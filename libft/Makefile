@@ -6,7 +6,7 @@
 #    By: dwald <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/05 13:52:24 by dwald             #+#    #+#              #
-#    Updated: 2017/10/26 14:11:14 by dwald            ###   ########.fr        #
+#    Updated: 2017/11/30 10:38:48 by dwald            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -119,7 +119,7 @@ CC			=	gcc
 
 FLAGS		=	-Wall -Wextra -Werror -O3
 
-GREEN		=	\033[0;32m
+GREEN		=	\033[92m
 RED			=	\033[0;31m
 NC			=	\033[0m
 
@@ -129,11 +129,13 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 			@mkdir -p $(OBJ_PATH)
 			@mkdir -p $(OBJ_PATH)/ft_dprintf/srcs
 			@$(CC) $(FLAGS) -I $(INC) -I $(INC_FT_DPRINTF) -o $@ -c $<
+			@printf "                                             \r"
+			@printf "✅ $(GREEN) $(notdir $<)\r$(NC)"
 
 $(NAME)	:	$(OBJ)
 			@ar rc $(NAME) $(OBJ)
 			@ranlib $(NAME)
-			@echo "\033[1m\033[32mSuccess : \033[0m compilation libf.a"
+			@echo "$(GREEN)Success : $(NC)libft.a compiled"
 
 clean	:
 				@/bin/rm -f 	$(OBJ)

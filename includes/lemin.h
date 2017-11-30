@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.h                                           :+:      :+:    :+:   */
+/*   lemin.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/11/29 14:48:03 by dwald            ###   ########.fr       */
+/*   Updated: 2017/11/30 10:52:10 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEM_IN_H
-# define LEM_IN_H
+#ifndef LEMIN_H
+# define LEMIN_H
 
 /*
 ** ------------------------------ Librairies -----------------------------------
 */
 
-# include "libft.h"
+# include "../libft/includes/libft.h"
+//# include "libft.h"
 # include <errno.h>
 
 /*
 ** ---------------------------- lem_in variables -------------------------------
 */
 
-typedef	struct	s_lem-in
+typedef	struct	s_lemin
 {
-
-}				t_lem-in;
+		int 	i;
+}				t_lemin;
 
 /*
 ** --------------------------- player main functions ---------------------------
