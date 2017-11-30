@@ -6,7 +6,7 @@
 #    By: dwald <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/05 13:52:24 by dwald             #+#    #+#              #
-#    Updated: 2017/11/30 10:38:48 by dwald            ###   ########.fr        #
+#    Updated: 2017/11/30 11:55:12 by dwald            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -130,7 +130,7 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 			@mkdir -p $(OBJ_PATH)/ft_dprintf/srcs
 			@$(CC) $(FLAGS) -I $(INC) -I $(INC_FT_DPRINTF) -o $@ -c $<
 			@printf "                                             \r"
-			@printf "✅ $(GREEN) $(notdir $<)\r$(NC)"
+			@printf "✅  $(notdir $<)\r"
 
 $(NAME)	:	$(OBJ)
 			@ar rc $(NAME) $(OBJ)
@@ -138,12 +138,12 @@ $(NAME)	:	$(OBJ)
 			@echo "$(GREEN)Success : $(NC)libft.a compiled"
 
 clean	:
-				@/bin/rm -f 	$(OBJ)
-				@echo "$(RED)---all objects removed---$(NC)"
+				@/bin/rm -f $(OBJ)
+				@echo "$(RED)---libft all objects removed----$(NC)"
 
 fclean	: 		clean
-				/bin/rm -f 	$(NAME)
-				@echo "$(RED)---libft removed completely---$(NC)"
+				/bin/rm -f $(NAME)
+				@echo "$(RED)---libft removed completely----$(NC)"
 
 re		:		fclean all
 
