@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 14:19:25 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/01 17:53:40 by dhadley          ###   ########.fr       */
+/*   Created: 2017/12/01 16:41:31 by dhadley           #+#    #+#             */
+/*   Updated: 2017/12/01 17:07:31 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static	int	ft_error(void)
+int			init(t_lemin *data)
 {
-	ft_putendl(strerror(errno));
-	exit(1);
-}
-
-int				main(void)
-{
-	int			ret;
-	char		*content;
-	t_lemin		data;
-	
-	if (!init(&data) || !parse(&data))
-		return (0); //error initialising or parsing;
-
-	return (0);
+	data->ants = NULL;
+	data->rooms = NULL;
+	data->num_ants = -1;
+	data->start = 0;
+	data->end = 0;
+	data->lines = NULL;
+	return (1);
 }

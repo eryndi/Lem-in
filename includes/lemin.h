@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/01 16:27:29 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/01 17:53:41 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ typedef struct		s_room
 	bool			occupied;
 	struct s_room	*next;
 	struct s_room	**connections;
+	bool			is_checked;
 	int				is_path;
+	struct s_room	*parse_next;
 }					t_room;
 
 typedef struct		s_ant
@@ -46,7 +48,7 @@ typedef struct		s_ant
 typedef	struct		s_lemin
 {
 	t_ant			*ants;
-	t_rooms			*rooms;
+	t_room			*rooms;
 	int				num_ants;
 	bool			start;
 	bool			end;
@@ -57,5 +59,8 @@ typedef	struct		s_lemin
 /*
 ** --------------------------- player main functions ---------------------------
 */
+
+int					init(t_lemin *data);
+int					parse(t_lemin *data);
 
 #endif
