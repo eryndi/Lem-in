@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/01 17:53:41 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/02 20:22:32 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ typedef struct		s_room
 	char			*name;
 	bool			is_start;
 	bool			is_end;
-	int				coord_x;
-	int				coord_y;
+	char			*coord_x;
+	char			*coord_y;
 	bool			occupied;
 	struct s_room	*next;
 	struct s_room	**connections;
@@ -62,5 +62,6 @@ typedef	struct		s_lemin
 
 int					init(t_lemin *data);
 int					parse(t_lemin *data);
+int					parse_rooms(t_lemin *data);
 
 #endif
