@@ -6,7 +6,7 @@
 #    By: dwald <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/05 13:52:24 by dwald             #+#    #+#              #
-#    Updated: 2017/11/30 11:55:12 by dwald            ###   ########.fr        #
+#    Updated: 2017/12/02 17:37:01 by dhadley          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,6 +102,10 @@ SRC_FILES	=	ft_atoi.c \
 				ft_dprintf/srcs/length_part_1.c \
 				ft_dprintf/srcs/length_part_2.c \
 				ft_dprintf/srcs/width_and_precision.c \
+				ft_list_find_end.c \
+				ft_list_new_elem.c \
+				ft_list_push_end.c \
+				ft_list_push_start.c \
 
 SRC_PATH	=	srcs
 

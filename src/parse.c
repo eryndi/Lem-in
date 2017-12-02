@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 16:31:26 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/01 19:13:08 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/02 18:12:20 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@ static int	parse_ants(t_lemin *data)
 	data->num_ants = ft_atoi(tmp);
 	if (data->num_ants < 1)
 		return (0);
-	data->lines = ft_lstnew(tmp, ft_strlen(tmp));
-	free(tmp);
+	ft_list_push_end(data->lines, tmp);
 	return (1);
 }
 
 int		parse(t_lemin *data)
 {
-	if (!parse_ants(data))
+	if (!parse_ants(data) || parse_rooms(data))
 		return (0);
 }
