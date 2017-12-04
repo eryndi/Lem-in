@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 17:45:09 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/04 14:46:28 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/04 17:31:51 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,30 @@ static int	add_room(t_lemin *data, t_room *new_room)
 	while (new_room->coord_x[i])
 	{
 		if (!ft_isdigit(new_room->coord_x[i]))
+		{
+			ft_putstr("ERROR bad coordinated\n");
 			return (0);
+		}
 		i++;
 	}
 	i = 0;
 	while (new_room->coord_y[i])
 	{
 		if (!ft_isdigit(new_room->coord_y[i]))
+		{
+			ft_putstr("ERROR bad coordinated\n");
 			return (0);
+		}
 		i++;
 	}
 	tmp = data->rooms;
 	while (tmp->parse_next != NULL)
 	{
 		if (!ft_strcmp(tmp->name, new_room->name))
+		{
+			ft_putstr("ERROR double room\n");
 			return (0);
+		}
 		tmp = tmp->parse_next;
 	}
 	tmp->parse_next = new_room;
@@ -53,7 +62,7 @@ static int	fill_room(t_lemin *data, char **room_x_y, int *token)
 	new_room->name = room_x_y[0];
 	new_room->coord_x = room_x_y[1];
 	new_room->coord_y = room_x_y[2];
-	new_room->parse_next == NULL;
+	new_room->parse_next = NULL;
 	if (*token == 1 || *token == 3)
 	{
 		new_room->is_start = 1;
@@ -86,13 +95,19 @@ static int	check_room(t_lemin *data, char *line, int *token)
 		tmp++;
 	}
 	if (i != 2)
+	{
+		ft_putstr("ERROR invalid room format\n");
 		return (0);
+	}
 	room_x_y = ft_strsplit(line, ' ');
 	i = 0;
 	while (room_x_y[i])
 		i++;
 	if (i != 3 || room_x_y[0][0] == '#' || room_x_y[0][0] == 'L')
+	{
+		ft_putstr("ERROR invalid room\n");
 		return (0);
+	}
 	if (fill_room(data, room_x_y, token))
 		return (1);
 	return (0);
@@ -100,20 +115,31 @@ static int	check_room(t_lemin *data, char *line, int *token)
 
 static int	check_command(t_lemin *data, char *line, int *token)
 {
+	//check if we want to change cases like:
+	//##start
+	//##end
+	//##start
+	//room 1 1
 	if (line[1] == '#')
 	{
 		if (!ft_strcmp(line, "##start"))
 		{
 			if (data->start)
+			{
+				ft_putstr("ERROR start already exists\n");
 				return (0);
-			(*token >= 2) ? *token = 3 : *token = 1;
-			return (1)
+			}
+			*token = (*token >= 2) ? 3 : 1;
+			return (1);
 		}
 		else if (!ft_strcmp(line, "##end"))
 		{
 			if (data->end)
+			{
+				ft_putstr("ERROR end already exists\n");
 				return (0);
-			(*token == 1 || *token == 3) ? *token = 3 : *token = 2;
+			}
+			*token = (*token == 1 || *token == 3) ? 3 : 2;
 			return (1);
 		}
 	}
@@ -125,19 +151,35 @@ int			parse_rooms(t_lemin *data)
 	char	*line;
 	t_room	*room;
 	int		token;
+	int i = 1;
 
 	token = 0;
 	while (get_next_line(0, &line) == 1)
 	{
 		if (!*line || *line == ' ')
+		{
+			ft_putstr("ERROR empty line\n");
 			return (0);
+		}
 		if (line[0] == '#')
 			check_command(data, line, &token); //if 0 ERROR
-		else if (!ft_strchr(line, '-'))
+		else if (ft_strchr(line, '-'))
 			break; //finished parsing rooms
 		else
-			check_room(data, line, &token);
-		ft_list_push_end(data->lines, line);
+			i = check_room(data, line, &token);
+		if (i == 0)
+			return (0);
+		ft_list_push_end(&data->lines, line);
 	}
-	
+	if (!ft_strchr(line, '-'))
+	{
+		ft_putstr("ERROR no connections!\n");
+		return (0);
+	}
+	if (!data->start || !data->end)
+	{
+		ft_putstr("ERROR no start or end\n");
+		return (0);
+	}
+	return (1);
 }
