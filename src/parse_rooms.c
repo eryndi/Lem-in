@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 17:45:09 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/04 17:42:37 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/04 18:33:13 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,11 @@ int			parse_rooms(t_lemin *data)
 		if (line[0] == '#')
 			check_command(data, line, &token); //if 0 ERROR
 		else if (ft_strchr(line, '-'))
-			break; //finished parsing rooms
+			{
+				if (parse_connections(data, line))
+					return (1);
+				return (0);
+			}
 		else
 			i = check_room(data, line, &token);
 		if (i == 0)
@@ -174,11 +178,6 @@ int			parse_rooms(t_lemin *data)
 	if (!ft_strchr(line, '-'))
 	{
 		ft_putstr("ERROR no connections!\n");
-		return (0);
-	}
-	if (!data->start || !data->end)
-	{
-		ft_putstr("ERROR no start or end\n");
 		return (0);
 	}
 	return (1);
