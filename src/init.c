@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 16:41:31 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/04 17:42:40 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/04 20:48:28 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int			init_room(t_room *room)
 	room->is_checked = 0;
 	room->is_path = -1;
 	room->parse_next = NULL;
+	room->tube = NULL;
 	return (1);
 }
 

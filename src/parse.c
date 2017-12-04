@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 16:31:26 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/04 18:33:09 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/04 21:47:24 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ static int	parse_ants(t_lemin *data)
 int		parse(t_lemin *data)
 {
 	if (!parse_ants(data) || !parse_rooms(data))
+		return (0);
+	if (!make_connections(data))
 		return (0);
 	return (1);
 }

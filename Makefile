@@ -6,7 +6,7 @@
 #    By: dwald <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 14:50:39 by dwald             #+#    #+#              #
-#    Updated: 2017/12/02 17:44:56 by dhadley          ###   ########.fr        #
+#    Updated: 2017/12/04 21:44:13 by dhadley          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,9 @@ NAME		=	lem-in
 SRC_FILES	=	main.c \
 				init.c \
 				parse.c \
-				parse_rooms.c
+				parse_rooms.c \
+				parse_tubes.c \
+				make_connections.c \
 
 SRC_PATH	=	src
 
