@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 17:45:09 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/04 18:33:13 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/04 22:08:38 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	add_room(t_lemin *data, t_room *new_room)
 		i++;
 	}
 	tmp = data->rooms;
-	while (tmp->parse_next != NULL)
+	while (tmp != NULL)
 	{
 		if (!ft_strcmp(tmp->name, new_room->name))
 		{
@@ -75,7 +75,7 @@ static int	fill_room(t_lemin *data, char **room_x_y, int *token)
 	}
 	*token = 0;
 	if (data->rooms == NULL)
-		data->rooms = new_room;
+		data->rooms = new_room; //add check for correct coord
 	else
 		i = add_room(data, new_room);
 	return (i);
@@ -165,7 +165,7 @@ int			parse_rooms(t_lemin *data)
 			check_command(data, line, &token); //if 0 ERROR
 		else if (ft_strchr(line, '-'))
 			{
-				if (parse_connections(data, line))
+				if (parse_tubes(data, line))
 					return (1);
 				return (0);
 			}
