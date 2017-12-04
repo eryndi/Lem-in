@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 17:45:09 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/04 17:31:51 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/04 17:42:37 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ static int	fill_room(t_lemin *data, char **room_x_y, int *token)
 	i = 1;
 	if (!(new_room = (t_room *)malloc(sizeof(t_room))))
 		return (0);
+	init_room(new_room);
 	new_room->name = room_x_y[0];
 	new_room->coord_x = room_x_y[1];
 	new_room->coord_y = room_x_y[2];
-	new_room->parse_next = NULL;
 	if (*token == 1 || *token == 3)
 	{
 		new_room->is_start = 1;
