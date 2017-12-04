@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/04 14:46:37 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/04 17:42:05 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ typedef	struct		s_lemin
 int					init(t_lemin *data);
 int					parse(t_lemin *data);
 int					parse_rooms(t_lemin *data);
-
+int					init_room(t_room *room);
 #endif
