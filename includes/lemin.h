@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/01 16:27:29 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/04 14:07:05 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct		s_room
 	struct s_room	*next;
 	struct s_room	**connections;
 	int				is_path;
+	struct s_room	*parse_next;
 }					t_room;
 
 typedef struct		s_ant
@@ -46,7 +47,7 @@ typedef struct		s_ant
 typedef	struct		s_lemin
 {
 	t_ant			*ants;
-	t_rooms			*rooms;
+	t_room			*rooms;
 	int				num_ants;
 	bool			start;
 	bool			end;
@@ -55,7 +56,10 @@ typedef	struct		s_lemin
 }					t_lemin;
 
 /*
-** --------------------------- player main functions ---------------------------
+** ------------------------------- algo functions ------------------------------
 */
+
+void    algo(t_lemin *data);
+void    prepare_structure(t_lemin *data);
 
 #endif
