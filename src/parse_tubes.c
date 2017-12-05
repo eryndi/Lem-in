@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 21:11:54 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/05 17:15:45 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/05 17:32:54 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ static int	check_exists(t_lemin *data, char *first, char *second)
 	tmp = data->rooms;
 	while (tmp)
 	{
-		if (!ft_strequ(first, tmp->name))
+		if (ft_strequ(first, tmp->name))
 			i++;
-		if (!ft_strequ(second, tmp->name))
+		if (ft_strequ(second, tmp->name))
 			i++;
 		tmp = tmp->parse_next;
 	}
