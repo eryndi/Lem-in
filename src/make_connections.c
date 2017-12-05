@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 21:44:23 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/04 22:13:30 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/05 19:23:33 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,9 @@ int				make_connections(t_lemin *data)
 			current_room->connections[j] = add_address(data, current_room, j);
 			j++;
 		}
+//		ft_dprintf(1, "hello j = %d\n", j);
 		current_room->connections[j] = NULL;
-		current_room = current_room->next;
+		current_room = current_room->parse_next;
 	}
 	return (1);
 }
