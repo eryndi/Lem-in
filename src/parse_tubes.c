@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 21:11:54 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/04 22:13:01 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/05 17:15:45 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int			parse_tubes(t_lemin *data, char *line)
 {
 	char	*tmp;
 	char	**name_name;
-
+	ft_putstr("Hello Tube\n");
 	if (!data->start || !data->end)
 	{
 		ft_putstr("ERROR no start or end\n");
