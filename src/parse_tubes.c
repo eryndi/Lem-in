@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 21:11:54 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/05 18:13:47 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/05 19:38:24 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,36 @@
 //O add the name of tab1 to the *tube to the tab[0]
 //O do the opposite
 
-static int	check_double(t_tube *tube, char *name)
+static int	check_double(t_room *room, char *name)
 {
 	t_tube	*tmp;
 	t_tube	*new_tube;
 
-	tmp = tube;
-	while (tmp)
-	{
-		if (ft_strequ(tmp->name, name))
-			return (0);
-		tmp = tmp->next;
-	}
-	tmp = tube;
+	tmp = room->tube;
 	if (tmp)
 	{
-		while (tmp->next != NULL)
+		while (tmp->next)
+		{
+			if (ft_strequ(tmp->name, name))
+				return (0);
 			tmp = tmp->next;
+		}
 	}
+//	tmp = room;
+//	if (tmp->tube)
+//	{
+//		ft_dprintf(1, "the tube name is %s\n", tmp->tube->name);
+//		while (tmp->tube->next != NULL)
+//			tmp->tube = tmp->tube->next;
+//	}
 	new_tube = (t_tube *)malloc(sizeof(t_tube));
 	new_tube->name = name;
 	new_tube->next = NULL;
 	if (tmp)
 		tmp->next = new_tube;
 	else
-		tube = new_tube;
+		room->tube = new_tube;
+//	ft_dprintf(1, "the new tube name for %s is %s\n", room->name, room->tube->name);
 	return (1);
 }
 
@@ -54,12 +59,12 @@ static int	add_tube(t_lemin *data, char *first, char *second)
 	tmp = data->rooms;
 	while (!ft_strequ(first, tmp->name))
 		tmp = tmp->parse_next;
-	if (!check_double(tmp->tube, first))
+	if (!check_double(tmp, second))
 		return (0);
 	tmp = data->rooms;
 	while (!ft_strequ(second, tmp->name))
 		tmp = tmp->parse_next;
-	if (!check_double(tmp->tube, second))
+	if (!check_double(tmp, first))
 		return (0);
 	return (1);
 }
