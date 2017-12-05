@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 21:11:54 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/05 17:32:54 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/05 18:13:47 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ static int	check_double(t_tube *tube, char *name)
 	new_tube = (t_tube *)malloc(sizeof(t_tube));
 	new_tube->name = name;
 	new_tube->next = NULL;
-	tmp->next = new_tube;
+	if (tmp)
+		tmp->next = new_tube;
+	else
+		tube = new_tube;
 	return (1);
 }
 
@@ -105,7 +108,6 @@ int			parse_tubes(t_lemin *data, char *line)
 {
 	char	*tmp;
 	char	**name_name;
-	ft_putstr("Hello Tube\n");
 	if (!data->start || !data->end)
 	{
 		ft_putstr("ERROR no start or end\n");
