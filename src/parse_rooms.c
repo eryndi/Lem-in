@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 17:45:09 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/04 22:08:38 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/05 17:29:17 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	add_room(t_lemin *data, t_room *new_room)
 		i++;
 	}
 	tmp = data->rooms;
-	while (tmp != NULL)
+	while (tmp->parse_next != NULL)
 	{
 		if (!ft_strcmp(tmp->name, new_room->name))
 		{
