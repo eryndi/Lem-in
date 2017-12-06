@@ -6,27 +6,20 @@
 #    By: dwald <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 14:50:39 by dwald             #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2017/12/04 14:06:13 by dwald            ###   ########.fr        #
-=======
-#    Updated: 2017/12/04 21:44:13 by dhadley          ###   ########.fr        #
->>>>>>> master
+#    Updated: 2017/12/06 14:50:19 by dwald            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	lem-in
 
 SRC_FILES	=	main.c \
-<<<<<<< HEAD
 				lem-in_auxiliary_functions.c \
 				algo.c \
-=======
 				init.c \
 				parse.c \
 				parse_rooms.c \
 				parse_tubes.c \
 				make_connections.c \
->>>>>>> master
 
 SRC_PATH	=	src
 
