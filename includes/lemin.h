@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/04 14:07:05 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/06 13:52:17 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ typedef struct		s_room
 	int				coord_y;
 	bool			occupied;
 	struct s_room	*next;
+	struct s_room	**next_start;
 	struct s_room	**connections;
 	int				is_path;
+	int				len;
 	struct s_room	*parse_next;
 }					t_room;
 
