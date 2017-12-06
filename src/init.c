@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 16:41:31 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/04 20:48:28 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/06 18:03:20 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 int			init_room(t_room *room)
 {
 	room->name = NULL;
-	room->is_start = 0;
-	room->is_end = 0;
+	room->is_start = false;
+	room->is_end = false;
 	room->coord_x = NULL;
 	room->coord_y = NULL;
 	room->occupied = 0;
 	room->next = NULL;
+	room->next_start = NULL;
 	room->connections = NULL;
 	room->is_checked = 0;
+	room->len = -1;
 	room->is_path = -1;
 	room->parse_next = NULL;
 	room->tube = NULL;
