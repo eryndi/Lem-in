@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:19:25 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/05 19:38:18 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/06 13:33:21 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,15 @@ int				main(void)
 
 	i = 0;
 
-	ft_dprintf(1, "hello\n"); //
+//	ft_dprintf(1, "hello\n"); //
 	if (!init(&data) || !parse(&data))
 		return (0); //error initialising or parsing;
-//	ft_dprintf(1, "The rooms are:\n"); //
+// ------------ Parsing debugging ---------------
+	ft_dprintf(1, "The rooms are:\n"); //
 	tmp = data.rooms; //
 		while (tmp != NULL)//
 		{//
-//			ft_dprintf(1, "%s\n", tmp->name);//
+			ft_dprintf(1, "%s\n", tmp->name);//
 			tmp = tmp->parse_next;//
 		}//
 	ft_dprintf(1, "The lines read were:\n");//
@@ -46,7 +47,7 @@ int				main(void)
 	ft_dprintf(1, "\n\nThe connections are:\n");
 	tmp = data.rooms;
 	while (tmp)
-	{
+ 	{
 		ft_dprintf(1, "\n%s is connected to ", tmp->name);
 		i = 0;
 		while (tmp->connections[i] != NULL)
@@ -57,6 +58,7 @@ int				main(void)
 		}
 		tmp = tmp->parse_next;
 	}
+// ------------- end of parsing debugging ---------------
 	ft_dprintf(1, "good-bye\n");//
 	return (0);
 }
