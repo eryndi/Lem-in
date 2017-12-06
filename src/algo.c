@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 10:20:03 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/04 16:00:06 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/06 13:20:51 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,21 @@ static	t_room	*get_end_room(t_lemin *data)
 void	algo(t_lemin *data)
 {
 	t_room *ptr;
+	int		i;
 
+	i = 0;
 	ptr = get_end_room(data);
-	ptr = ptr.connections;
-	while (ptr.is_path == -1 && ptr.connections != NULL)
+	ptr = *(ptr->connections);
+	while (ptr->is_start != true) //till we arrive at the beggining of the list
 	{
-		if (ptr.is_start == true)
-			ft_dprintf(1, "Hello\n");	
+		while (ptr->is_path == -1 || ptr->connections[i] != NULL)
+		{
+			ft_dprintf(1, PF_RED"Hello\n"PF_EOC);
+			if (ptr->connections[i]->is_start == true)
+				ft_dprintf(1, "NEXT is STRAT\n");
+			i++;
+		}
+		if (ptr->connections == NULL)
 	}
+	return ;		
 }	
