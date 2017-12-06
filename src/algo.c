@@ -6,30 +6,17 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 10:20:03 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/06 13:20:51 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/06 18:56:54 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
 /*
-** Dijsktra's algorithm finds the minimum distance from node START to all nodes 
+** BFS algorithm finds the minimum distance from node START to all nodes 
 ** So in return you get the minimum distance tree from node START.
 */
 
-/*
-✅   Find room END
-❌    Verify if room is available at the map (room->path == -1) then look at every room connection you have:
-		if (room->path == -1 &&  room->checked == false)
-		while (room->connections->name != NULL);
-❌   2.1.    If true and it’s not START nor END => Set room as checked
-room->is_checked = (room->is_start == false && room->is_end == false) ? true : false; 
-❌    2.2.    If room connection is not a START nor END then set the next pointer of 
-the connection room to my room. This way the room which precedes 
-my room has a pointer set to my room and we start to set-up a path towards END backwards.
-❌    If ((room->connection->is_end == false && room->connection->is_start == false) && room->connection->is_path == -1)) // room is not already in another path
-            room->connection->next == room->name;
-*/
 static	t_room	*get_end_room(t_lemin *data)
 {
 	t_room	*end;
@@ -44,24 +31,80 @@ static	t_room	*get_end_room(t_lemin *data)
 	return (NULL);
 }
 
-void	algo(t_lemin *data)
+static	void	store_path(t_room *vertex, t_room *strat)
 {
-	t_room *ptr;
-	int		i;
+		
+}
 
-	i = 0;
-	ptr = get_end_room(data);
-	ptr = *(ptr->connections);
-	while (ptr->is_start != true) //till we arrive at the beggining of the list
+static	void	bfs_algo(t_room *vertex, int i)
+{
+	int		n;
+
+	n = 0;
+	ft_dprintf(1, PF_CYAN"Hello from bfs_algo\n"PF_EOC);
+	if (vertex == NULL)
 	{
-		while (ptr->is_path == -1 || ptr->connections[i] != NULL)
+		ft_dprintf(1, "Error\n");
+		ft_dprintf(1, "next is the end, start was not found\n");
+		exit (1);
+	}
+	vertex->connections[i]->next = vertex;
+	vertex = vertex->connections[i];
+	ft_dprintf(1, PF_CYAN"vertex room name: %s\n"PF_EOC, vertex->name);
+	if (vertex->connections == NULL)
+	{
+		ft_dprintf(1, "moving to neighbour vertex\n");
+		return (bfs_algo(vertex->next, i + 1));//level up to search neighbour
+	}
+	if (vertex->is_start == true)
+	{
+		ft_dprintf(1, "start was found directly\n");
+	}
+	else if (vertex->is_start == false)//till we arrive at the beggining of the list
+	{
+	//	ft_dprintf(1, PF_RED"Hello\n"PF_EOC);
+		while (vertex->connections[n] != NULL && vertex->is_path == -1)
 		{
-			ft_dprintf(1, PF_RED"Hello\n"PF_EOC);
-			if (ptr->connections[i]->is_start == true)
-				ft_dprintf(1, "NEXT is STRAT\n");
-			i++;
+			if ( vertex->connections[n] == vertex->next)
+			{
+				n++;
+				break;
+			}
+ft_dprintf(1, "hello checking vertex %s%s%s connections n = %d\n", PF_RED, vertex->name, PF_EOC, n);
+ft_dprintf(1, "room connection name:%s%s%s\n", PF_CYAN, vertex->connections[n]->name, PF_EOC);
+			if (vertex->connections[n]->is_start == true)
+			{
+				vertex->is_path = 1;
+				ft_dprintf(1, "next is strat\n");
+				ft_dprintf(1, PF_CYAN"room: %s\n"PF_EOC, vertex->name);
+				store_path(vertex, vertex);
+				break;
+				//launch function to mark all the ptr->next as path == 1;
+				//and stock this node to *next_start[i]
+			}
+			n++;
 		}
-		if (ptr->connections == NULL)
+		if (vertex->connections[n] == NULL && vertex->next->connections[i+1] != NULL)
+		{
+			ft_dprintf(1, PF_RED"Recursive to upper level\n"PF_EOC);
+			return (bfs_algo(vertex->next, i + 1));
+		}
+		if (vertex->connections[n] == NULL && vertex->next->connections[i+1] == NULL)
+		{
+			ft_dprintf(1, PF_GREEN"Recursive to lower level\n"PF_EOC);
+			return (bfs_algo(vertex->connections[0], 0));
+		}
 	}
 	return ;		
-}	
+}
+
+void		algo_launcher(t_lemin *data, int i)
+{
+	ft_dprintf(1, PF_CYAN"Hello from algo_launcher\n"PF_EOC);
+	t_room *end;
+
+	end = get_end_room(data);
+	end->next = NULL;
+//	ft_dprintf(1, PF_RED"Hello\n"PF_EOC);
+	bfs_algo(end, i);
+}

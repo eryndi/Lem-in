@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/06 13:58:41 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/06 15:31:38 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef	struct		s_lemin
 ** ------------------------------- algo functions ------------------------------
 */
 
-void    algo(t_lemin *data);
+void    algo_launcher(t_lemin *data, int i);
 void    prepare_structure(t_lemin *data);
 
 /*
