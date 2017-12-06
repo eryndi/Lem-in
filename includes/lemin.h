@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/06 13:52:17 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/06 13:58:41 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,28 @@
 ** ---------------------------- lem_in variables -------------------------------
 */
 
+typedef struct		s_tube
+{
+	char			*name;
+	struct s_tube	*next;
+}					t_tube;
+
 typedef struct		s_room
 {
 	char			*name;
 	bool			is_start;
 	bool			is_end;
-	int				coord_x;
-	int				coord_y;
+	char			*coord_x;
+	char			*coord_y;
 	bool			occupied;
 	struct s_room	*next;
 	struct s_room	**next_start;
 	struct s_room	**connections;
+	bool			is_checked;
 	int				is_path;
 	int				len;
 	struct s_room	*parse_next;
+	t_tube			*tube;
 }					t_room;
 
 typedef struct		s_ant
@@ -63,5 +71,16 @@ typedef	struct		s_lemin
 
 void    algo(t_lemin *data);
 void    prepare_structure(t_lemin *data);
+
+/*
+** ---------------------------- parsing functions ------------------------------
+*/
+
+int					init(t_lemin *data);
+int					init_room(t_room *room);
+int					parse(t_lemin *data);
+int					parse_rooms(t_lemin *data);
+int					parse_tubes(t_lemin *data, char *line);
+int					make_connections(t_lemin *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:19:25 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/04 15:42:20 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/06 13:56:32 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,24 +90,49 @@ static	int	ft_error(void)
 	exit(1);
 }
 
-int			main(void)
+int				main(void)
 {
-	int			ret;
-	char		*content;
 	t_lemin		data;
-//	t_room		node;
+	t_room		*tmp; //for debug
+	int			i;
+	t_room		*test;
 
+	i = 0;
 	testing_structure(&data);
 	prepare_structure(&data);
 	algo(&data);
-	for (int i = 0; i < 6; ++i) 
-		ft_dprintf(2, "data->rooms[%d].name = %s\n", i, data.rooms[i].name);
-/*	while ((ret = get_next_line(STDIN_FILENO, &content)) > 0)
+//	ft_dprintf(1, "hello\n"); //
+	if (!init(&data) || !parse(&data))
+		return (0); //error initialising or parsing;
+// ------------ Parsing debugging ---------------
+	ft_dprintf(1, "The rooms are:\n"); //
+	tmp = data.rooms; //
+		while (tmp != NULL)//
+		{//
+			ft_dprintf(1, "%s\n", tmp->name);//
+			tmp = tmp->parse_next;//
+		}//
+	ft_dprintf(1, "The lines read were:\n");//
+	while (data.lines != NULL)
 	{
-			
-//			ft_parser(&data, &content);
- }
-	if (close(STDIN_FILENO) < 0)
-		ft_error();*/
+		ft_dprintf(1, "%s\n", data.lines->content);
+		data.lines = data.lines->next;
+	}
+	ft_dprintf(1, "\n\nThe connections are:\n");
+	tmp = data.rooms;
+	while (tmp)
+ 	{
+		ft_dprintf(1, "\n%s is connected to ", tmp->name);
+		i = 0;
+		while (tmp->connections[i] != NULL)
+		{
+			test = tmp->connections[i];
+			ft_dprintf(1, "- %s ", test->name);
+			i++;
+		}
+		tmp = tmp->parse_next;
+	}
+// ------------- end of parsing debugging ---------------
+	ft_dprintf(1, "good-bye\n");//
 	return (0);
 }
