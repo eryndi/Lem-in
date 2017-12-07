@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 16:41:31 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/06 18:03:20 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/07 19:15:27 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int			init_room(t_room *room)
 	room->next = NULL;
 	room->next_start = NULL;
 	room->connections = NULL;
-	room->is_checked = 0;
+	room->is_enqueued = false;
+	room->is_dequeued = false;
 	room->len = -1;
 	room->is_path = -1;
 	room->parse_next = NULL;

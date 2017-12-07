@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/06 15:31:38 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/07 18:54:03 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ typedef struct		s_room
 	struct s_room	*next;
 	struct s_room	**next_start;
 	struct s_room	**connections;
-	bool			is_checked;
+	bool			is_enqueued;
+	bool			is_dequeued;
 	int				is_path;
 	int				len;
 	struct s_room	*parse_next;
