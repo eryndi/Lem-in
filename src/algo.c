@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 10:20:03 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/06 18:56:54 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/07 20:26:39 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 static	t_room	*get_end_room(t_lemin *data)
 {
 	t_room	*end;
-
+	
 	end = data->rooms;
 	while (end->parse_next != NULL)
 	{
@@ -31,80 +31,103 @@ static	t_room	*get_end_room(t_lemin *data)
 	return (NULL);
 }
 
-static	void	store_path(t_room *vertex, t_room *strat)
+static	int		number_of_rooms(t_room *rooms)
 {
-		
-}
-
-static	void	bfs_algo(t_room *vertex, int i)
-{
-	int		n;
-
-	n = 0;
-	ft_dprintf(1, PF_CYAN"Hello from bfs_algo\n"PF_EOC);
-	if (vertex == NULL)
+	int		len;
+	t_room	*end;
+	
+	len = 0;
+	end = rooms;
+	while (end != NULL)
 	{
-		ft_dprintf(1, "Error\n");
-		ft_dprintf(1, "next is the end, start was not found\n");
+		end = end->parse_next;
+		len++;
+	}
+	return (len);
+}
+	
+static	int	store_path(t_room *start, path_number)
+{
+	int		paths;
+
+	paths = 0;
+	while (start->connections[paths] != NULL)
+		paths++;
+	if (start->next == NULL)
+		if ((start->next = (t_room*)malloc(sizeof(t_room) * paths + 1)) == NULL)
+			ft_protect_malloc();
+	if (path_number < path)
+	{
+		start->next_start[path_number] = start->next;
+		start->next = NULL;
+		retrun (path_number);
+	}
+	else
+	{
+		ft_dprintf("Error in number of START paths\n");
 		exit (1);
 	}
-	vertex->connections[i]->next = vertex;
-	vertex = vertex->connections[i];
-	ft_dprintf(1, PF_CYAN"vertex room name: %s\n"PF_EOC, vertex->name);
-	if (vertex->connections == NULL)
+//need function which checks # of addresses and adapts allocated memory accordingly
+}
+
+static	void	bfs_algo(t_room *vertex, int len)
+{
+	t_room	*pile[len + 1];
+	int		n;
+	int		i;
+	int		start;
+	int		path_number;
+
+	ft_dprintf(1, PF_CYAN"Hello from bfs_algo\n"PF_EOC);
+	n = 0;
+	i = 0;
+	start = 0;
+	ft_bzero(pile, len + 1);
+	vertex->is_enqueued = true;
+	ft_dprintf(1, PF_CYAN"vertex->name = %s\n"PF_EOC, vertex->name);
+	while (i < len)
 	{
-		ft_dprintf(1, "moving to neighbour vertex\n");
-		return (bfs_algo(vertex->next, i + 1));//level up to search neighbour
-	}
-	if (vertex->is_start == true)
-	{
-		ft_dprintf(1, "start was found directly\n");
-	}
-	else if (vertex->is_start == false)//till we arrive at the beggining of the list
-	{
-	//	ft_dprintf(1, PF_RED"Hello\n"PF_EOC);
-		while (vertex->connections[n] != NULL && vertex->is_path == -1)
+		if (vertex->connections[n] != NULL 
+		&& vertex->connections[n]->is_start == false
+		&& vertex->connections[n]->is_end == false
+		&& vertex->connections[n]->is_enqueued == false
+		&& vertex->connections[n]->is_dequeued == false)
 		{
-			if ( vertex->connections[n] == vertex->next)
-			{
-				n++;
-				break;
-			}
-ft_dprintf(1, "hello checking vertex %s%s%s connections n = %d\n", PF_RED, vertex->name, PF_EOC, n);
-ft_dprintf(1, "room connection name:%s%s%s\n", PF_CYAN, vertex->connections[n]->name, PF_EOC);
-			if (vertex->connections[n]->is_start == true)
-			{
-				vertex->is_path = 1;
-				ft_dprintf(1, "next is strat\n");
-				ft_dprintf(1, PF_CYAN"room: %s\n"PF_EOC, vertex->name);
-				store_path(vertex, vertex);
-				break;
-				//launch function to mark all the ptr->next as path == 1;
-				//and stock this node to *next_start[i]
-			}
-			n++;
+			vertex->connections[n]->next = vertex;
+			vertex->connections[n]->is_enqueued = true;
+			pile[i] = vertex->connections[n];
+			ft_dprintf(1, PF_CYAN"pile[%d] = %s\n"PF_EOC, i, pile[i]->name);
+			i++;
 		}
-		if (vertex->connections[n] == NULL && vertex->next->connections[i+1] != NULL)
+		else if (vertex->connections[n] == NULL)
 		{
-			ft_dprintf(1, PF_RED"Recursive to upper level\n"PF_EOC);
-			return (bfs_algo(vertex->next, i + 1));
+			ft_dprintf(1, PF_RED"Hello\n"PF_EOC);
+			while (pile[start]->is_dequeued != false)
+				start++;
+			vertex = pile[start];
+			vertex->is_dequeued = true;
+			n = -1;
 		}
-		if (vertex->connections[n] == NULL && vertex->next->connections[i+1] == NULL)
+		else if (vertex->connections[n]->is_start == true)
 		{
-			ft_dprintf(1, PF_GREEN"Recursive to lower level\n"PF_EOC);
-			return (bfs_algo(vertex->connections[0], 0));
+			ft_dprintf(1, PF_RED"START\n"PF_EOC);
+			path_number = store_path(vertex->connections[n], path_number + 1);
+			return ;
 		}
+		n++;
 	}
-	return ;		
+	return ;
 }
 
 void		algo_launcher(t_lemin *data, int i)
 {
 	ft_dprintf(1, PF_CYAN"Hello from algo_launcher\n"PF_EOC);
 	t_room *end;
+	int		len;
 
 	end = get_end_room(data);
 	end->next = NULL;
+	len = number_of_rooms(data->rooms);
 //	ft_dprintf(1, PF_RED"Hello\n"PF_EOC);
-	bfs_algo(end, i);
+	bfs_algo(end, len);
 }
