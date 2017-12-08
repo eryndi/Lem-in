@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/04 22:12:15 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/08 18:06:57 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ typedef struct		s_room
 	struct s_room	**connections;
 	bool			is_checked;
 	int				is_path;
+	int				len;
+	int				nb_ants;
+	struct s_room	**next_start;
 	struct s_room	*parse_next;
 	t_tube			*tube;
 }					t_room;
@@ -73,4 +76,6 @@ int					parse(t_lemin *data);
 int					parse_rooms(t_lemin *data);
 int					parse_tubes(t_lemin *data, char *line);
 int					make_connections(t_lemin *data);
+
+
 #endif
