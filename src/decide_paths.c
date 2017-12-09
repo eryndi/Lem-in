@@ -6,30 +6,51 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 19:28:25 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/08 18:06:53 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/09 13:43:23 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 // remember to set variable nb_ants in t_room to 0 in init!
 
-void	distribute_ants(t_lemin *data, t_room *start_room)
+//find shortest len.
+//add ant to room
+//add len+1 to room
+//repeat
+static void	distribute_ants(t_lemin *data, t_room *start_room)
 {
-	int	counter;
-	int	i;
+	int		counter;
+	int		i;
+	t_room	*tmp;
 
-	i = 0;
 	counter = 0;
 	while (counter <= data->num_ants)
 	{
-		if (start_room->next_start[i]
-		while (start_room->next_start[i]->len <
-		start_room->next_start[i]->len++;
-		start_room->next_start[i]->nb_ants++;
+		i = 0;
+		while (start_room->next_start[i])
+		{
+			if (start_room->next_start[i + 1])
+			{
+				if (start_room->next_start[i]->len < start_room->next_start[i + 1])
+				{
+					tmp = start_room->next_start[i];
+					break ;
+				}
+				else
+					tmp = start_room->next_start[i + 1];
+			}
+			else
+				tmp = start_room->next_start[i];
+			i++;
+		}
+		tmp->nb_ants++;
+		tmp->len++;
+		counter++;
 	}
+	return ;
 }
 
-void	remove_extra_paths(t_lemin *data, t_room *start_room)
+void		remove_extra_paths(t_lemin *data, t_room *start_room)
 {
 	int		i;
 
