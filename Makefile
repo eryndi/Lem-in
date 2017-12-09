@@ -6,7 +6,7 @@
 #    By: dwald <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 14:50:39 by dwald             #+#    #+#              #
-#    Updated: 2017/12/09 19:27:08 by dhadley          ###   ########.fr        #
+#    Updated: 2017/12/09 19:37:33 by dhadley          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ SRC_FILES	=	main.c \
 				parse_rooms.c \
 				parse_tubes.c \
 				make_connections.c \
+				decide_paths.c \
+				assign_ants.c \
 
 SRC_PATH	=	src
 

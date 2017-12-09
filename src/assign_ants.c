@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 16:28:56 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/09 19:24:05 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/09 20:14:14 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,44 @@ static t_ant	*init_ant(int i)
 	return (ant);
 }
 
-void			assign_ants(t_lemin *data, t_room *start_room)
+static t_room	*find_start_room(t_lemin *data)
 {
-	int	i;
-	int	j;
-	int	nb_paths;
+	t_room	*start_room;
+	t_room	*tmp;
 
+	tmp = data->rooms;
+	while (tmp)
+	{
+		if (tmp->is_start)
+		{
+			start_room = tmp;
+			break;
+		}
+		tmp = tmp->parse_next;
+	}
+	return (start_room);
+}
+
+void			assign_ants(t_lemin *data)
+{
+	int		i;
+	int		j;
+	int		nb_paths;
+	t_room	*start_room;
+
+	start_room = find_start_room(data);
 	data->ants = (t_ant **)malloc(sizeof(t_ant *) * data->num_ants + 1);
 	data->ants[data->num_ants] = NULL;
 	nb_paths = get_number_paths(start_room);
 	i = 0;
-	while (data->ants[i])
+	while (i < data->num_ants)
 	{
 		j = 0;
 		while (j < nb_paths)
 		{
 			if (start_room->next_start[j]->nb_ants > 0 && i < data->num_ants)
 			{
-				data->ants[i] = init_ant(i);
+				data->ants[i] = init_ant(i + 1);
 				data->ants[i]->start = start_room->next_start[j];
 				start_room->next_start[j]->nb_ants--;
 				i++;
@@ -59,4 +79,5 @@ void			assign_ants(t_lemin *data, t_room *start_room)
 			j++;
 		}
 	}
+	ft_putstr("finished assigning ants\n");
 }
