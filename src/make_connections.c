@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 21:44:23 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/05 19:23:33 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/08 17:48:55 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int				make_connections(t_lemin *data)
 	t_room	*current_room;
 	int		i;
 	int		j;
-
+ft_dprintf(1, PF_CYAN"Hello from make connections\n"PF_EOC);
 	i = 0;
 	current_room = data->rooms;
 	while (current_room)
