@@ -6,13 +6,15 @@
 #    By: dwald <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 14:50:39 by dwald             #+#    #+#              #
-#    Updated: 2017/12/04 21:44:13 by dhadley          ###   ########.fr        #
+#    Updated: 2017/12/09 19:27:08 by dhadley          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	lem-in
 
 SRC_FILES	=	main.c \
+				lem-in_auxiliary_functions.c \
+				algo.c \
 				init.c \
 				parse.c \
 				parse_rooms.c \
@@ -68,7 +70,7 @@ clean:
 
 fclean:			clean
 				/bin/rm -f $(NAME)
-				make fclean -C $(LIBFT_PATH)
+#				make fclean -C $(LIBFT_PATH)
 				@echo "$(RED)---lem-in removed completely---$(NC)"
 
 re:				fclean all

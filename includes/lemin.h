@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/09 19:24:08 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/09 19:30:28 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ typedef struct		s_room
 	char			*coord_y;
 	bool			occupied;
 	struct s_room	*next;
+	struct s_room	**next_start;
 	struct s_room	**connections;
-	bool			is_checked;
+	bool			is_enqueued;
+	bool			is_dequeued;
 	int				is_path;
 	int				len;
 	int				nb_ants;
-	struct s_room	**next_start;
 	struct s_room	*parse_next;
 	t_tube			*tube;
 }					t_room;
@@ -69,7 +70,14 @@ typedef	struct		s_lemin
 }					t_lemin;
 
 /*
-** --------------------------- player main functions ---------------------------
+** ------------------------------- algo functions ------------------------------
+*/
+
+void    algo_launcher(t_lemin *data, int i);
+void    prepare_structure(t_lemin *data);
+
+/*
+** ---------------------------- parsing functions ------------------------------
 */
 
 int					init(t_lemin *data);
@@ -82,5 +90,4 @@ int					make_connections(t_lemin *data);
 void				remove_extra_paths(t_lemin *data, t_room *start_room);
 
 void				assign_ants(t_lemin *data, t_room *start_room);
-
 #endif

@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 21:11:54 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/05 19:38:24 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/08 17:59:00 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ int			parse_tubes(t_lemin *data, char *line)
 {
 	char	*tmp;
 	char	**name_name;
+ft_dprintf(1, PF_CYAN"Hello from parse_tubes\n"PF_EOC);
 	if (!data->start || !data->end)
 	{
 		ft_putstr("ERROR no start or end\n");
@@ -139,11 +140,20 @@ int			parse_tubes(t_lemin *data, char *line)
 		if (!(line[0] == '#'))
 		{
 			if (!(name_name = check_line_tabs(line)))
+			{
+				ft_putstr("ERROR wrong connection format\n");
 				return (0);
+			}
 			if (!(check_exists(data, name_name[0], name_name[1])))
+			{
+				ft_putstr("ERROR tube name doesnt exist\n");
 				return (0);
+			}
 			if (!add_tube(data, name_name[0], name_name[1]))
+			{
+				ft_putstr("ERROR connection already exists\n");
 				return (0);
+			}
 		}
 		ft_list_push_end(&data->lines, line);
 	}

@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 17:45:09 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/05 17:29:17 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/08 17:53:13 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ int			parse_rooms(t_lemin *data)
 	int		token;
 	int i = 1;
 
+	ft_dprintf(1, PF_CYAN"Hello from parse_rooms\n"PF_EOC);
 	token = 0;
 	while (get_next_line(0, &line) == 1)
 	{
@@ -167,6 +168,7 @@ int			parse_rooms(t_lemin *data)
 			{
 				if (parse_tubes(data, line))
 					return (1);
+	ft_dprintf(1, PF_RED"Parse tubes return ZERO\n"PF_EOC);
 				return (0);
 			}
 		else
