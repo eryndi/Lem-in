@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/08 18:06:57 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/09 19:24:08 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,15 @@ typedef struct		s_room
 
 typedef struct		s_ant
 {
-	char			*name;
-	char			*room_name;
+	int				id;
+	t_room			*start;
+	bool			print;
+	bool			finished;
 }					t_ant;
 
 typedef	struct		s_lemin
 {
-	t_ant			*ants;
+	t_ant			**ants;
 	t_room			*rooms;
 	int				num_ants;
 	bool			start;
@@ -77,5 +79,8 @@ int					parse_rooms(t_lemin *data);
 int					parse_tubes(t_lemin *data, char *line);
 int					make_connections(t_lemin *data);
 
+void				remove_extra_paths(t_lemin *data, t_room *start_room);
+
+void				assign_ants(t_lemin *data, t_room *start_room);
 
 #endif

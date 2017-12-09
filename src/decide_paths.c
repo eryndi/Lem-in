@@ -6,18 +6,14 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 19:28:25 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/09 13:43:23 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/09 19:24:04 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 // remember to set variable nb_ants in t_room to 0 in init!
 
-//find shortest len.
-//add ant to room
-//add len+1 to room
-//repeat
-static void	distribute_ants(t_lemin *data, t_room *start_room)
+static void	ant_distribution(t_lemin *data, t_room *start_room)
 {
 	int		counter;
 	int		i;
@@ -31,13 +27,11 @@ static void	distribute_ants(t_lemin *data, t_room *start_room)
 		{
 			if (start_room->next_start[i + 1])
 			{
-				if (start_room->next_start[i]->len < start_room->next_start[i + 1])
+				if (start_room->next_start[i]->len <= start_room->next_start[i + 1]->len)
 				{
 					tmp = start_room->next_start[i];
 					break ;
 				}
-				else
-					tmp = start_room->next_start[i + 1];
 			}
 			else
 				tmp = start_room->next_start[i];
@@ -68,6 +62,6 @@ void		remove_extra_paths(t_lemin *data, t_room *start_room)
 			start_room->next_start[i] = NULL;
 		i--;
 	}
-	distribute_ants(data, start_room);
+	ant_distribution(data, start_room);
 	return ;
 }
