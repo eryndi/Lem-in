@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/09 19:30:28 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/09 20:03:47 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int					parse_rooms(t_lemin *data);
 int					parse_tubes(t_lemin *data, char *line);
 int					make_connections(t_lemin *data);
 
-void				remove_extra_paths(t_lemin *data, t_room *start_room);
-
-void				assign_ants(t_lemin *data, t_room *start_room);
+void				decide_paths(t_lemin *data);
+void				assign_ants(t_lemin *data);
 #endif
