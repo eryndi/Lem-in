@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/09 20:03:47 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/10 20:03:46 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct		s_room
 	bool			is_end;
 	char			*coord_x;
 	char			*coord_y;
-	bool			occupied;
+	bool			free;
 	struct s_room	*next;
 	struct s_room	**next_start;
 	struct s_room	**connections;
@@ -89,4 +89,7 @@ int					make_connections(t_lemin *data);
 
 void				decide_paths(t_lemin *data);
 void				assign_ants(t_lemin *data);
+void				move_ants(t_lemin *data);
+
+void				free_structures(t_lemin *data);
 #endif

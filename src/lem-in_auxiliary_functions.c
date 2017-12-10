@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:53:22 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/06 17:48:16 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/10 20:38:57 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	prepare_structure(t_lemin *data)
 {
 	int	i;
-	ft_dprintf(1, PF_CYAN"Hello from prepare_structure\n"PF_EOC);
+//	ft_dprintf(1, PF_CYAN"Hello from prepare_structure\n"PF_EOC);
 
 	i = 0;
 	while (i < 6)
