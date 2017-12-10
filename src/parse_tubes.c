@@ -6,18 +6,11 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 21:11:54 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/08 17:59:00 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/10 21:03:28 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
-//O check that the line is correct
-//O	check that it has 1 '-'
-//O	check that is has 2 tabs if split
-//O for each tab check that the room exists
-//O before adding the name, check that the name isnt already in the list
-//O add the name of tab1 to the *tube to the tab[0]
-//O do the opposite
 
 static int	check_double(t_room *room, char *name)
 {
@@ -34,13 +27,6 @@ static int	check_double(t_room *room, char *name)
 			tmp = tmp->next;
 		}
 	}
-//	tmp = room;
-//	if (tmp->tube)
-//	{
-//		ft_dprintf(1, "the tube name is %s\n", tmp->tube->name);
-//		while (tmp->tube->next != NULL)
-//			tmp->tube = tmp->tube->next;
-//	}
 	new_tube = (t_tube *)malloc(sizeof(t_tube));
 	new_tube->name = name;
 	new_tube->next = NULL;
@@ -48,7 +34,6 @@ static int	check_double(t_room *room, char *name)
 		tmp->next = new_tube;
 	else
 		room->tube = new_tube;
-//	ft_dprintf(1, "the new tube name for %s is %s\n", room->name, room->tube->name);
 	return (1);
 }
 
@@ -113,7 +98,7 @@ int			parse_tubes(t_lemin *data, char *line)
 {
 	char	*tmp;
 	char	**name_name;
-ft_dprintf(1, PF_CYAN"Hello from parse_tubes\n"PF_EOC);
+
 	if (!data->start || !data->end)
 	{
 		ft_putstr("ERROR no start or end\n");

@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 17:45:09 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/08 17:53:13 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/10 21:05:15 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static int	fill_room(t_lemin *data, char **room_x_y, int *token)
 	}
 	*token = 0;
 	if (data->rooms == NULL)
-		data->rooms = new_room; //add check for correct coord
+		data->rooms = new_room;
 	else
 		i = add_room(data, new_room);
 	return (i);
@@ -115,11 +115,6 @@ static int	check_room(t_lemin *data, char *line, int *token)
 
 static int	check_command(t_lemin *data, char *line, int *token)
 {
-	//check if we want to change cases like:
-	//##start
-	//##end
-	//##start
-	//room 1 1
 	if (line[1] == '#')
 	{
 		if (!ft_strcmp(line, "##start"))
@@ -151,9 +146,9 @@ int			parse_rooms(t_lemin *data)
 	char	*line;
 	t_room	*room;
 	int		token;
-	int i = 1;
+	int		i;
 
-	ft_dprintf(1, PF_CYAN"Hello from parse_rooms\n"PF_EOC);
+	i = 0;
 	token = 0;
 	while (get_next_line(0, &line) == 1)
 	{
@@ -165,12 +160,11 @@ int			parse_rooms(t_lemin *data)
 		if (line[0] == '#')
 			check_command(data, line, &token); //if 0 ERROR
 		else if (ft_strchr(line, '-'))
-			{
-				if (parse_tubes(data, line))
-					return (1);
-	ft_dprintf(1, PF_RED"Parse tubes return ZERO\n"PF_EOC);
-				return (0);
-			}
+		{
+			if (parse_tubes(data, line))
+				return (1);
+			return (0);
+		}
 		else
 			i = check_room(data, line, &token);
 		if (i == 0)

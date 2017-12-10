@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 16:28:56 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/09 20:14:14 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/10 20:21:47 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int		get_number_paths(t_room *start_room)
 static t_ant	*init_ant(int i)
 {
 	t_ant	*ant;
-	
+
 	ant = (t_ant *)malloc(sizeof(t_ant));
 	ant->id = i;
 	ant->print = false;
@@ -45,7 +45,7 @@ static t_room	*find_start_room(t_lemin *data)
 		if (tmp->is_start)
 		{
 			start_room = tmp;
-			break;
+			break ;
 		}
 		tmp = tmp->parse_next;
 	}
@@ -79,5 +79,4 @@ void			assign_ants(t_lemin *data)
 			j++;
 		}
 	}
-	ft_putstr("finished assigning ants\n");
 }

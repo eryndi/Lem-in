@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 10:20:03 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/08 17:42:26 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/10 17:51:45 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static	t_room	*get_end_room(t_lemin *data)
 			return (end);
 		end = end->parse_next;
 	}
-	ft_dprintf(1, PF_RED"Helloi seg fault END room not found\n"PF_EOC);
+	ft_dprintf(1, PF_RED"Hello seg fault END room not found\n"PF_EOC);
 	return (NULL);
 }
 
@@ -72,8 +72,8 @@ static	int	store_path(t_room *start, int path_number)
 	{
 		start->next_start[path_number] = start->next;
 		start->next = NULL;
-	for (int i = 0; path_number == paths - 1 && i < paths; i++)
-ft_dprintf(1, PF_CYAN"strat->next_strat[%i] = %s path_number = %i paths = %i\n"PF_EOC, i, start->next_start[i]->name, path_number, paths);
+//	for (int i = 0; path_number == paths - 1 && i < paths; i++)
+//ft_dprintf(1, PF_CYAN"strat->next_strat[%i] = %s path_number = %i paths = %i\n"PF_EOC, i, start->next_start[i]->name, path_number, paths);
 		return (path_number);
 	}
 	else
@@ -139,7 +139,7 @@ static	void	bfs_algo(t_room *vertex, int len)
 
 void		algo_launcher(t_lemin *data, int i)
 {
-	ft_dprintf(1, PF_CYAN"Hello from algo_launcher\n"PF_EOC);
+//	ft_dprintf(1, PF_CYAN"Hello from algo_launcher\n"PF_EOC);
 	t_room *end;
 	int		len;
 

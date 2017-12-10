@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 16:31:26 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/04 21:47:24 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/10 21:07:59 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,28 @@ static int	parse_ants(t_lemin *data)
 		ft_putstr("ERROR reading line\n");
 		return (0);
 	}
-	if (!*line)
+	tmp = line;
+	if (!*tmp)
 	{
 		ft_putstr("ERROR empty line\n");
 		return (0);
 	}
-	tmp = line;
-	while (*line)
+	while (*tmp)
 	{
-		if (!ft_isdigit(*line))
+		if (!ft_isdigit(*tmp))
 		{
 			ft_putstr("ERROR number of ants not an int\n");
 			return (0);
 		}
-		line++;
+		tmp++;
 	}
-	data->num_ants = ft_atoi(tmp);
+	data->num_ants = ft_atoi(line);
 	if (data->num_ants < 1)
 	{
 		ft_putstr("ERROR wrong number of ants\n");
 		return (0);
 	}
 	ft_list_push_end(&data->lines, tmp);
-	ft_dprintf(1, "finished parsing ants, there are %d of them\n", data->num_ants); ////
 	return (1);
 }
 
