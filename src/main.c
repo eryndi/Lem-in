@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:19:25 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/11 13:49:50 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/11 20:02:37 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ int				main(void)
 	t_lemin		data;
 	t_list		*tmp;
 	int			i;
+	t_room		*start_room;
 	//int			j;
 
 	i = 0;
@@ -147,8 +148,8 @@ int				main(void)
 	ft_putchar('\n');
 	algo_launcher(&data, i);
 //test_map(&data);	
-	decide_paths(&data);
-	assign_ants(&data);
+	start_room = decide_paths(&data);
+	assign_ants(&data, start_room);
 //	j = 0;
 //	while (data.ants[j] != NULL)
 //	{

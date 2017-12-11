@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 19:28:25 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/10 20:35:42 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/11 20:05:02 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void			remove_extra_paths(t_lemin *data, t_room *start_room)
 	return ;
 }
 
-void			decide_paths(t_lemin *data)
+t_room			*decide_paths(t_lemin *data)
 {
 	t_room	*start_room;
 	t_room	*tmp;
@@ -103,5 +103,5 @@ void			decide_paths(t_lemin *data)
 		tmp = tmp->parse_next;
 	}
 	remove_extra_paths(data, start_room);
-	return ;
+	return (start_room);
 }

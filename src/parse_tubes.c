@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 21:11:54 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/10 21:03:28 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/11 21:39:12 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static int	check_double(t_room *room, char *name)
 			tmp = tmp->next;
 		}
 	}
-	new_tube = (t_tube *)malloc(sizeof(t_tube));
+	if (!(new_tube = (t_tube *)malloc(sizeof(t_tube))))
+		ft_protect_malloc();
 	new_tube->name = name;
 	new_tube->next = NULL;
 	if (tmp)
@@ -74,11 +75,13 @@ static int	check_exists(t_lemin *data, char *first, char *second)
 	return (0);
 }
 
-static char	**check_line_tabs(char *line)
+static char	**check_line_tabs(t_lemin *data, char *line)
 {
 	char	*tmp;
 	int		i;
 
+	if (!data->start || !data->end)
+		return_error("ERROR no start or end\n");
 	i = 0;
 	tmp = line;
 	while (*tmp)
@@ -99,46 +102,23 @@ int			parse_tubes(t_lemin *data, char *line)
 	char	*tmp;
 	char	**name_name;
 
-	if (!data->start || !data->end)
-	{
-		ft_putstr("ERROR no start or end\n");
-		return (0);
-	}
-	if (!(name_name = check_line_tabs(line)))
-	{
-		ft_putstr("ERROR wrong connection format\n");
-		return (0);
-	}
+	if (!(name_name = check_line_tabs(data, line)))
+		return_error("ERROR wrong connection format\n");
 	if (!check_exists(data, name_name[0], name_name[1]))
-	{
-		ft_putstr("ERROR tube name doesnt exist\n");
-		return (0);
-	}
+		return_error("ERROR room name doesnt exist\n");
 	if (!add_tube(data, name_name[0], name_name[1]))
-	{
-		ft_putstr("ERROR connection already exists\n");
-		return (0);
-	}
+		return_error("ERROR connection already exists\n");
 	ft_list_push_end(&data->lines, line);
 	while (get_next_line(0, &line) == 1)
 	{
 		if (!(line[0] == '#'))
 		{
 			if (!(name_name = check_line_tabs(line)))
-			{
-				ft_putstr("ERROR wrong connection format\n");
-				return (0);
-			}
+				return_error("ERROR wrong connection format\n");
 			if (!(check_exists(data, name_name[0], name_name[1])))
-			{
-				ft_putstr("ERROR tube name doesnt exist\n");
-				return (0);
-			}
+				return_error("ERROR tube name doesnt exist\n");
 			if (!add_tube(data, name_name[0], name_name[1]))
-			{
-				ft_putstr("ERROR connection already exists\n");
-				return (0);
-			}
+				return_error("ERROR connection already exists\n");
 		}
 		ft_list_push_end(&data->lines, line);
 	}

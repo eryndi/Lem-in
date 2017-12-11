@@ -6,19 +6,19 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 16:41:31 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/10 20:22:45 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/11 21:19:29 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int			init_room(t_room *room)
+int			init_room(t_room *room, char **room_x_y)
 {
-	room->name = NULL;
+	room->name = room_x_y[0];
 	room->is_start = false;
 	room->is_end = false;
-	room->coord_x = NULL;
-	room->coord_y = NULL;
+	room->coord_x = room_x_y[1];
+	room->coord_y = room_x_y[2];
 	room->free = 1;
 	room->next = NULL;
 	room->next_start = NULL;
