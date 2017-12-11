@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 21:11:54 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/11 21:39:12 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/11 21:40:20 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int			parse_tubes(t_lemin *data, char *line)
 	{
 		if (!(line[0] == '#'))
 		{
-			if (!(name_name = check_line_tabs(line)))
+			if (!(name_name = check_line_tabs(data, line)))
 				return_error("ERROR wrong connection format\n");
 			if (!(check_exists(data, name_name[0], name_name[1])))
 				return_error("ERROR tube name doesnt exist\n");
