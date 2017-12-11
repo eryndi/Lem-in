@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:19:25 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/10 21:12:44 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/11 13:49:50 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,12 +132,15 @@ int				main(void)
 //	testing_structure(&data);
 //	prepare_structure(&data);
 	if (!init(&data) || !parse(&data))
+	{
+		ft_putstr("ERROR\n");
 		return (0);
+	}
 	while (data.lines)
 	{
 		tmp = data.lines;
 		ft_dprintf(1, "%s\n", data.lines->content);
-		free(data.lines->content);
+	//	free(data.lines->content);
 		data.lines = data.lines->next;
 		free(tmp);
 	}

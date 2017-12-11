@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 17:45:09 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/10 21:05:15 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/11 13:44:51 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,8 +147,8 @@ int			parse_rooms(t_lemin *data)
 	t_room	*room;
 	int		token;
 	int		i;
-
-	i = 0;
+	
+	i = 1;
 	token = 0;
 	while (get_next_line(0, &line) == 1)
 	{
