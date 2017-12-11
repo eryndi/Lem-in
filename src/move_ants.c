@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/10 17:01:48 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/10 20:46:33 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/11 13:56:44 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,11 @@ void		move_ants(t_lemin *data)
 				{
 					data->ants[i]->print = true;
 					data->ants[i]->start->free = false;
+					if (data->ants[i]->start->is_end)
+					{
+						data->ants[i]->finished = true;
+						data->ants[i]->start->free = true;
+					}
 				}
 			}
 			else if (!data->ants[i]->finished && data->ants[i]->print)

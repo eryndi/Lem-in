@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/10 19:39:27 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/10 20:37:55 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/11 13:46:41 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	free_ants(t_lemin *data)
 	int i;
 
 	i = 0;
-	while (i <= data->num_ants)
+	while (i < data->num_ants)
 	{
 		free(data->ants[i]);
 		i++;
