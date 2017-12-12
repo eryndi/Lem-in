@@ -6,7 +6,7 @@
 #    By: dwald <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 14:50:39 by dwald             #+#    #+#              #
-#    Updated: 2017/12/10 19:50:57 by dhadley          ###   ########.fr        #
+#    Updated: 2017/12/12 14:50:02 by dwald            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC_FILES	=	main.c \
 				assign_ants.c \
 				move_ants.c \
 				free_structures.c \
+				return_error.c \
 
 SRC_PATH	=	src
 
@@ -45,7 +46,7 @@ LIBFTA		=	libft.a
 
 CC			=	gcc
 
-FLAGS		=	#-Wextra -Werror -Wall
+FLAGS		=	-Wextra -Werror -Wall
 
 GREEN		=   \033[92m
 BLACK		=   \033[30m
