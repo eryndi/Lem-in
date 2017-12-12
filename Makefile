@@ -6,7 +6,7 @@
 #    By: dwald <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 14:50:39 by dwald             #+#    #+#              #
-#    Updated: 2017/12/12 14:50:02 by dwald            ###   ########.fr        #
+#    Updated: 2017/12/12 15:38:07 by dwald            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ LIBFTA		=	libft.a
 
 CC			=	gcc
 
-FLAGS		=	-Wextra -Werror -Wall
+FLAGS		=	#-Wextra -Werror -Wall
 
 GREEN		=   \033[92m
 BLACK		=   \033[30m
