@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/11 17:01:36 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/12 14:49:25 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,17 @@ int     number_of_rooms(t_room *rooms);
 */
 
 int					init(t_lemin *data);
-int					init_room(t_room *room);
+int					init_room(t_room *room, char **room_x_y);
 int					parse(t_lemin *data);
 int					parse_rooms(t_lemin *data);
 int					parse_tubes(t_lemin *data, char *line);
 int					make_connections(t_lemin *data);
 
-void				decide_paths(t_lemin *data);
-void				assign_ants(t_lemin *data);
+t_room				*decide_paths(t_lemin *data);
+void				assign_ants(t_lemin *data, t_room *start_room);
 void				move_ants(t_lemin *data);
 
 void				free_structures(t_lemin *data);
+void				return_error(char *message);
+
 #endif

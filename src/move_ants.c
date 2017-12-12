@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/10 17:01:48 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/11 13:56:44 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/11 20:15:40 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,21 @@ static void	move_forward(t_lemin *data, int i)
 	return ;
 }
 
+static void	enter_map(t_lemin *data, int i)
+{
+	if (data->ants[i]->start->free)
+	{
+		data->ants[i]->print = true;
+		data->ants[i]->start->free = false;
+		if (data->ants[i]->start->is_end)
+		{
+			data->ants[i]->finished = true;
+			data->ants[i]->start->free = true;
+		}
+	}
+	return ;
+}
+
 void		move_ants(t_lemin *data)
 {
 	int	i;
@@ -77,18 +92,7 @@ void		move_ants(t_lemin *data)
 			if (data->ants[i]->finished)
 				data->ants[i]->print = false;
 			else if (!data->ants[i]->finished && !data->ants[i]->print)
-			{
-				if (data->ants[i]->start->free)
-				{
-					data->ants[i]->print = true;
-					data->ants[i]->start->free = false;
-					if (data->ants[i]->start->is_end)
-					{
-						data->ants[i]->finished = true;
-						data->ants[i]->start->free = true;
-					}
-				}
-			}
+				enter_map(data, i);
 			else if (!data->ants[i]->finished && data->ants[i]->print)
 				move_forward(data, i);
 			i++;
