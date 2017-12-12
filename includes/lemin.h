@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/10 20:03:46 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/11 17:01:36 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ typedef	struct		s_lemin
 
 void    algo_launcher(t_lemin *data, int i);
 void    prepare_structure(t_lemin *data);
+t_room  *get_end_room(t_room *room);
+int     number_of_rooms(t_room *rooms);
 
 /*
 ** ---------------------------- parsing functions ------------------------------
