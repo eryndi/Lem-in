@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:53:22 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/12 15:51:25 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/12 16:29:55 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ void	clear_map(t_room *room)
 {
 	while(room != NULL)
 	{
-		room->is_enqueued = false;
+		if (room->next != NULL)
+			room->is_enqueued = false;
 		room->is_dequeued = false;
-		room = room->next;
+		room = room->parse_next;
 	}
 }
 
