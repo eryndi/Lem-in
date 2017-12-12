@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 10:20:03 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/12 15:50:10 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/12 16:32:45 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@
 
 static	void	mark_path(t_room *room, int path_number)
 {
-	ft_dprintf(1, PF_CYAN"Hello from mark path\n"PF_EOC);
+//	ft_dprintf(1, PF_CYAN"Hello from mark path\n"PF_EOC);
 	while (room->next != NULL)
 	{
-		ft_dprintf(1, PF_MAGENTA"path room->name = %s\n"PF_EOC, room->name);
+//		ft_dprintf(1, PF_MAGENTA"path room->name = %s\n"PF_EOC, room->name);
 		room->is_path = path_number;
 		room = room->next;
 	}
 	return ;
 }
 	
-static	int	store_path(t_room *start, int path_number)
+static	int	store_path(t_lemin *data, t_room *start, int path_number)
 {
 	int		paths;
 	int		i;
@@ -51,12 +51,10 @@ static	int	store_path(t_room *start, int path_number)
 	{
 		start->next_start[path_number] = start->next;
 		mark_path(start->next, path_number);
-		clear_map(start);
-		ft_dprintf(1, PF_CYAN"name = %s\n"PF_EOC, start->name);
-		exit (0);
+		clear_map(data->rooms);
 		start->next = NULL;
-	for (int i = 0; path_number == paths - 1 && i < paths; i++)
-ft_dprintf(1, PF_CYAN"strat->next_strat[%i] = %s path_number = %i paths = %i\n"PF_EOC, i, start->next_start[i]->name, path_number, paths);
+//	for (int i = 0; path_number == paths - 1 && i < paths; i++)
+//ft_dprintf(1, PF_CYAN"strat->next_strat[%i] = %s path_number = %i paths = %i\n"PF_EOC, i, start->next_start[i]->name, path_number, paths);
 		return (path_number);
 	}
 	else
@@ -66,24 +64,28 @@ ft_dprintf(1, PF_CYAN"strat->next_strat[%i] = %s path_number = %i paths = %i\n"P
 	}
 }
 
-static	void	bfs_algo(t_room *vertex, int len)
+static	void	bfs_algo(t_lemin *data, t_room *vertex, int len)
 {
 	t_room	*pile[len + 1];
 	int		n;
 	int		i;
 	int		start;
 	int		path_number;
+	t_room *end;
 
 //	ft_dprintf(1, PF_CYAN"Hello from bfs_algo\n"PF_EOC);
 	n = 0;
 	i = 0;
 	start = 0;
 	path_number = -1;
+	end = vertex;
 	ft_bzero(pile, len + 1);
 	vertex->is_enqueued = true;
 //	ft_dprintf(1, PF_CYAN"vertex->name = %s\n"PF_EOC, vertex->name);
 	while (i < len)
 	{
+//	if (vertex->connections[n] != NULL)
+//	ft_dprintf(1, PF_CYAN"vertex->name = %s vertex->con[%d] = %s is path = %d enq %d deq%d\n"PF_EOC, vertex->name, n, vertex->connections[n]->name, vertex->connections[n]->is_path, vertex->connections[n]->is_enqueued, vertex->connections[n]->is_dequeued);
 		if (vertex->connections[n] != NULL 
 		&& vertex->connections[n]->is_start == false
 		&& vertex->connections[n]->is_end == false
@@ -94,7 +96,7 @@ static	void	bfs_algo(t_room *vertex, int len)
 			vertex->connections[n]->next = vertex;
 			vertex->connections[n]->is_enqueued = true;
 			pile[i] = vertex->connections[n];
-			ft_dprintf(1, PF_CYAN"pile[%d] = %s\n"PF_EOC, i, pile[i]->name);
+		//	ft_dprintf(1, PF_CYAN"pile[%d] = %s\n"PF_EOC, i, pile[i]->name);
 			i++;
 		}
 		else if (vertex->connections[n] == NULL)
@@ -114,10 +116,13 @@ static	void	bfs_algo(t_room *vertex, int len)
 		{
 //			ft_dprintf(1, PF_RED"START\n"PF_EOC);
 			vertex->connections[n]->next = vertex;
-			path_number = store_path(vertex->connections[n], path_number + 1);
+			path_number = store_path(data, vertex->connections[n], path_number + 1);
 			ft_bzero(pile, len + 1);
-			vertex->connections[n]->next = vertex;
+			vertex = end;
+//			vertex->connections[n]->next = vertex;
 			i = 0;
+			start = 0;
+			n = -1;
 		}
 		n++;
 	}
@@ -134,5 +139,5 @@ void		algo_launcher(t_lemin *data)
 	end->next = NULL;
 	len = number_of_rooms(data->rooms);
 //	ft_dprintf(1, PF_RED"Hello\n"PF_EOC);
-	bfs_algo(end, len);
+	bfs_algo(data, end, len);
 }
