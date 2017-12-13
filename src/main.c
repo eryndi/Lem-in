@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:19:25 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/12 15:26:35 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/13 15:11:18 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int				main(void)
 	{
 		tmp = data.lines;
 		ft_dprintf(1, "%s\n", data.lines->content);
-	//	free(data.lines->content);
+		free(data.lines->content);
 		data.lines = data.lines->next;
 		free(tmp);
 	}
@@ -82,5 +82,7 @@ int				main(void)
 //	}
 	move_ants(&data);
 	free_structures(&data);
+	while (42)
+		;
 	return (0);
 }
