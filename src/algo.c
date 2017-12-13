@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 10:20:03 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/13 16:56:13 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/13 18:42:16 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,30 @@
 ** So in return you get the minimum distance tree from node START.
 */
 
-static	t_room	*store_path(t_lemin *data, t_room *start, t_room *vertex, int i)
+static	t_room	*store_path(t_lemin *data, t_room *start, t_room *vertex)
 {
 	int		paths;
-	t_room	*end;
 
 	paths = 0;
-	i = 0;
 	start->next = vertex;
 	while (start->connections[paths] != NULL)
 		paths++;
 	if (start->next_start == NULL)
-	{
-		start->next_start = (t_room**)malloc(sizeof(t_room)*paths + 1);
-		if (start->next_start == NULL)
-			ft_protect_malloc();
-		while (i != paths)
-			start->next_start[i++] = NULL;
-	}
+		allocate_memory(start, paths);
 ft_dprintf(1, PF_CYAN"path_number = %i paths = %i\n"PF_EOC, data->path_number, paths);
 	if (data->path_number < paths)
 	{
 		start->next_start[data->path_number] = start->next;
-		end = mark_path(start->next, data->path_number);
+		mark_path(start->next, data->path_number);
 		clear_map(data->rooms);
+		if (start->next == data->e_room)
+		{
+//	ft_dprintf(1, PF_RED"Hello\n"PF_EOC);
+			return (NULL);
+		}
 		start->next = NULL;
 		data->path_number++;
-		return (end);
+		return (data->e_room);
 	}
 	else
 		ft_dprintf(1, "Error in number of START paths\n");
@@ -54,7 +51,7 @@ static	int		get_room_to_put_on_pile(t_room *vertex, int n)
 {
 //ft_dprintf(1, PF_MAGENTA"vertex->connections[%d]\n"PF_EOC, n);
 //	if (vertex->connections[n] != NULL) 
-//ft_dprintf(1, PF_MAGENTA"vertex->connections[%d] = %s\n"PF_EOC, n, vertex->connections[n]->name);
+//ft_dprintf(1, PF_MAGENTA"vertex->connections[%d] = %s is start = %d\n"PF_EOC, n, vertex->connections[n]->name, vertex->connections[n]->is_start);
 	if (vertex->connections[n] != NULL 
 	&& vertex->connections[n]->is_start == false
 	&& vertex->connections[n]->is_end == false
@@ -84,21 +81,21 @@ static	int		dequeue_vertex(int start, int i, t_room **pile, t_room **vertex)
 	return (start);
 }
 
-static	void	bfs_algo(t_lemin *data, t_room *vertex, int len, int i)
+static	void	bfs_algo(t_lemin *data, t_room *vertex, int length, int i)
 {
-	t_room	*pile[len + 1];
+	t_room	*pile[length + 1];
 	int		n;
 	int		start;
 
 //	ft_dprintf(1, PF_CYAN"Hello from bfs_algo\n"PF_EOC);
 	clear_pile(pile, &start, &n, &i);
-	n = 0;
-	while (i < len)
+	n = -1;
+	while (i < length)
 	{
-		if (get_room_to_put_on_pile(vertex, n) == 1)
+		if (get_room_to_put_on_pile(vertex, ++n) == 1)
 		{
 			pile[i++] = vertex->connections[n];
-			//ft_dprintf(1, "pile[%d] = %p\n", i-1, pile[i - 1]);
+			ft_dprintf(1, "pile[%d] = %p\n", i-1, pile[i - 1]);
 		}
 		else if (vertex->connections[n] == NULL)
 		{
@@ -108,24 +105,22 @@ static	void	bfs_algo(t_lemin *data, t_room *vertex, int len, int i)
 				n = -1;
 		}
 		else if ((vertex->connections[n]->is_start == true) && 
-		((vertex = store_path(data, vertex->connections[n], vertex, i))!= NULL))
+		((vertex = store_path(data, vertex->connections[n], vertex)) != NULL))
 			clear_pile(pile, &start, &n, &i);
-		n++;
+		if (vertex == NULL)
+			return ;
 	}
 }
 
 void		algo_launcher(t_lemin *data)
 {
 //	ft_dprintf(1, PF_CYAN"Hello from algo_launcher\n"PF_EOC);
-	t_room *end;
-	int		len;
+	int		length;
 	int		i;
 
-	if ((end = get_end_room(data->rooms)) == NULL)
-		exit (1);
-	end->next = NULL;
-	end->is_enqueued = true;
-	len = number_of_rooms(data->rooms);
-	i = len + 1;
-	bfs_algo(data, end, len, i);
+	data->e_room->next = NULL;
+	data->e_room->is_enqueued = true;
+	length = number_of_rooms(data->rooms);
+	i = length + 1;
+	bfs_algo(data, data->e_room, length, i);
 }
