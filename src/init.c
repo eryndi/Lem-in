@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 16:41:31 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/13 13:55:47 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/13 16:13:51 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@ int			init_room(t_room *room, char **room_x_y)
 	return (1);
 }
 
+void		init_start_end(t_lemin *data, t_room *new_room)
+{
+	if (new_room->is_start)
+		data->s_room = new_room;
+	if (new_room->is_end)
+		data->e_room = new_room;
+}
+
 int			init(t_lemin *data)
 {
 	data->ants = NULL;
@@ -42,5 +50,7 @@ int			init(t_lemin *data)
 	data->start = 0;
 	data->end = 0;
 	data->lines = NULL;
+	data->s_room = NULL;
+	data->e_room = NULL;
 	return (1);
 }

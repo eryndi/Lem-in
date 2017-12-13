@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 21:11:54 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/11 21:43:06 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/13 16:19:07 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static int	check_double(t_room *room, char *name)
 	{
 		while (tmp->next)
 		{
-			if (ft_strequ(tmp->name, name))
-				return (0);
+	//		if (ft_strequ(tmp->name, name))
+	//			return (0);
 			tmp = tmp->next;
 		}
 	}

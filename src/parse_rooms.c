@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 17:45:09 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/11 21:26:29 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/13 16:17:53 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static int	fill_room(t_lemin *data, char **room_x_y, int *token)
 		data->rooms = new_room;
 	else
 		i = add_room(data, new_room, i);
+	init_start_end(data, new_room);
 	return (i);
 }
 

@@ -6,11 +6,42 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 16:31:26 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/11 21:03:11 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/13 16:52:27 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+static int	count_digits(char *line)
+{
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = line;
+	while (ft_isdigit(*tmp))
+	{
+		i++;
+		tmp++;
+	}
+	if (i > 10)
+		return_error("ERROR number of ants bigger than INT_MAX\n");
+	return (i);
+}
+
+static void	check_int_max(char *line)
+{
+	int		i;
+	char	*tmp;
+
+	tmp = line;
+	if ((i = count_digits(line)) == 10)
+	{
+		if (ft_strcmp(tmp, "2147483647") > 0)
+			return_error("ERROR number of ants bigger than INT_MAX\n");
+	}
+	return ;
+}
 
 static int	parse_ants(t_lemin *data)
 {
@@ -28,10 +59,12 @@ static int	parse_ants(t_lemin *data)
 			return_error("ERROR number of ants not an int\n");
 		tmp++;
 	}
+	tmp = line;
+	check_int_max(tmp);
 	data->num_ants = ft_atoi(line);
 	if (data->num_ants < 1)
 		return_error("ERROR wrong number of ants\n");
-	ft_list_push_end(&data->lines, tmp);
+	ft_list_push_end(&data->lines, line);
 	return (1);
 }
 

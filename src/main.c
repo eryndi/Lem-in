@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:19:25 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/12 15:26:35 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/13 16:35:25 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int				main(void)
 {
 	t_lemin		data;
 	t_list		*tmp;
-	t_room		*start_room;
 
 //	testing_structure(&data);
 //	prepare_structure(&data);
@@ -65,15 +64,15 @@ int				main(void)
 	{
 		tmp = data.lines;
 		ft_dprintf(1, "%s\n", data.lines->content);
-	//	free(data.lines->content);
+		free(data.lines->content);
 		data.lines = data.lines->next;
 		free(tmp);
 	}
 	ft_putchar('\n');
 	algo_launcher(&data);
 //test_map(&data);	
-	start_room = decide_paths(&data);
-	assign_ants(&data, start_room);
+	decide_paths(&data);
+	assign_ants(&data, data.s_room);
 //	j = 0;
 //	while (data.ants[j] != NULL)
 //	{
@@ -82,5 +81,7 @@ int				main(void)
 //	}
 	move_ants(&data);
 	free_structures(&data);
+	while (42)
+		;
 	return (0);
 }
