@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 17:45:09 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/13 16:17:53 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/13 18:51:04 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,9 @@ static int	fill_room(t_lemin *data, char **room_x_y, int *token)
 		ft_protect_malloc();
 	init_room(new_room, room_x_y);
 	if (*token == 1 || *token == 3)
-	{
 		new_room->is_start = 1;
-		data->start = 1;
-	}
 	else if (*token == 2 || *token == 3)
-	{
 		new_room->is_end = 1;
-		data->end = 1;
-	}
 	*token = 0;
 	if (data->rooms == NULL)
 		data->rooms = new_room;
@@ -103,14 +97,20 @@ static int	check_command(t_lemin *data, char *line, int *token)
 		{
 			if (data->start)
 				return_error("ERROR start already exists\n");
-			*token = (*token >= 2) ? 3 : 1;
+			data->start = true;
+			*token = (*token == 2) ? 3 : 1;
+			if (*token == 3)
+				return_error("ERROR start is end\n");
 			return (1);
 		}
 		else if (!ft_strcmp(line, "##end"))
 		{
 			if (data->end)
 				return_error("ERROR end already exists\n");
-			*token = (*token == 1 || *token == 3) ? 3 : 2;
+			data->end = true;
+			*token = (*token == 1) ? 3 : 2;
+			if (*token == 3)
+				return_error("ERROR start is end\n");
 			return (1);
 		}
 	}
