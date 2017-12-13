@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:19:25 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/13 16:35:25 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/13 17:16:00 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,10 @@ int				main(void)
 	}
 	ft_putchar('\n');
 	algo_launcher(&data);
-//test_map(&data);	
+//test_map(&data);
+	ft_putstr("Hello!!\n");	
 	decide_paths(&data);
+	ft_putstr("assigning ants\n");
 	assign_ants(&data, data.s_room);
 //	j = 0;
 //	while (data.ants[j] != NULL)
@@ -79,9 +81,8 @@ int				main(void)
 //		ft_dprintf(1, "The ant number %d is starting in room %s\n", data.ants[j]->id, data.ants[j]->start->name);
 //		j++;
 //	}
+	ft_putstr("moving ants\n");
 	move_ants(&data);
 	free_structures(&data);
-	while (42)
-		;
 	return (0);
 }

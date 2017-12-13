@@ -6,11 +6,19 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 21:44:23 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/13 16:14:30 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/13 17:11:09 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+static void		check_start_end(t_lemin *data)
+{
+	if (data->s_room->connections[0] == NULL ||
+			data->e_room->connections[0] == NULL)
+		return_error("ERROR no connections from start or end\n");
+	return ;
+}
 
 static t_room	*add_address(t_lemin *data, t_room *current_room, int j)
 {
@@ -69,5 +77,6 @@ int				make_connections(t_lemin *data)
 		cur_room->connections[j] = NULL;
 		cur_room = cur_room->parse_next;
 	}
+	check_start_end(data);
 	return (1);
 }

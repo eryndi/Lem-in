@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 19:28:25 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/13 16:19:45 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/13 18:24:00 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@ static t_room	*find_shortest_path(t_lemin *data, t_room *start_room)
 {
 	int		i;
 	t_room	*shortest;
-
 	i = 0;
 	while (start_room->next_start[i])
 	{
-		if (start_room->next_start[i + 1])
+		if (start_room->next_start[i + 1] != NULL)
 		{
 			if (start_room->next_start[i]->len <=
 					start_room->next_start[i + 1]->len)
@@ -73,6 +72,7 @@ void			decide_paths(t_lemin *data)
 			data->s_room->next_start[i] = NULL;
 		i--;
 	}
+	ft_putstr("Extra paths have been removed\n\n");
 	ant_distribution(data, data->s_room);
 	return ;
 }
