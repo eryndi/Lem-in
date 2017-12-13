@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/13 17:00:34 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/13 18:28:20 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct		s_room
 	bool			is_enqueued;
 	bool			is_dequeued;
 	int				is_path;
-	int				len;
+	unsigned int	len;
 	int				nb_ants;
 	struct s_room	*parse_next;
 	t_tube			*tube;
@@ -78,11 +78,11 @@ typedef	struct		s_lemin
 */
 
 void    algo_launcher(t_lemin *data);
-t_room	*get_end_room(t_room *room);
-t_room	*mark_path(t_room *room, int path_number);
+void	mark_path(t_room *room, int path_number);
 int     number_of_rooms(t_room *rooms);
 void    clear_map(t_room *room);
 void    clear_pile(t_room **pile, int *start, int *n, int *i);
+void    allocate_memory(t_room *start, int paths);
 
 /*
 ** ---------------------------- parsing functions ------------------------------
