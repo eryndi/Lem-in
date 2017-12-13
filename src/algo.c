@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 10:20:03 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/13 18:42:16 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/13 18:56:15 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,13 @@ static	int		get_room_to_put_on_pile(t_room *vertex, int n)
 		vertex->connections[n]->next = vertex;
 		vertex->connections[n]->is_enqueued = true;
 		return (1);
+	}
+	if (vertex->connections[n] != NULL 
+	&& vertex->connections[n]->is_start == true
+	&& vertex->is_end == true)
+	{
+	ft_dprintf(1, PF_RED"Hello\n"PF_EOC);
+		return (0);
 	}
 	else
 		return (0);
