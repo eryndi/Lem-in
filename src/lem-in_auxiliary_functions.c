@@ -6,14 +6,19 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:53:22 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/13 17:00:00 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/13 18:40:40 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-t_room	*mark_path(t_room *room, int path_number)
+void	mark_path(t_room *room, int path_number)
 {
+	unsigned	int	length;
+	t_room 			*strat_next;
+
+	length = 0;
+	strat_next = room;
 //	ft_dprintf(1, PF_CYAN"Hello from mark path\n"PF_EOC);
 	ft_dprintf(1, PF_CYAN"path_number = %i\n"PF_EOC, path_number);
 	while (room->next != NULL)
@@ -21,8 +26,10 @@ t_room	*mark_path(t_room *room, int path_number)
 		ft_dprintf(1, PF_MAGENTA"path room->name = %s\n"PF_EOC, room->name);
 		room->is_path = path_number;
 		room = room->next;
+		length++;
 	}
-	return (room);
+	strat_next->len = length;
+	return ;
 }
 
 void    clear_pile(t_room **pile, int *start, int *n, int *i)
@@ -45,20 +52,6 @@ void	clear_map(t_room *room)
 	}
 }
 
-t_room	*get_end_room(t_room *room)
-{
-//	ft_dprintf(1, PF_CYAN"Hello from get end room\n"PF_EOC);
-	
-	while (room != NULL)
-	{
-		if (room->is_end == true)
-			return (room);
-		room = room->parse_next;
-	}
-	ft_dprintf(1, PF_RED"Error, END room not found\n"PF_EOC);
-	return (NULL);
-}
-
 int		number_of_rooms(t_room *rooms)
 {
 	int		len;
@@ -73,4 +66,14 @@ int		number_of_rooms(t_room *rooms)
 		len++;
 	}
 	return (len);
+}
+
+void	allocate_memory(t_room *start, int paths)
+{
+	start->next_start = (t_room**)malloc(sizeof(t_room)*paths + 1);
+	if (start->next_start == NULL)
+		ft_protect_malloc();
+	while (--paths)
+		start->next_start[paths] = NULL;
+	return ;
 }
