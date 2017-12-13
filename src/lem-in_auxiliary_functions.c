@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:53:22 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/12 16:29:55 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/13 12:01:49 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_room	*get_end_room(t_room *room)
 			return (room);
 		room = room->parse_next;
 	}
-	ft_dprintf(1, PF_RED"Hello seg fault END room not found\n"PF_EOC);
+	ft_dprintf(1, PF_RED"Error, END room not found\n"PF_EOC);
 	return (NULL);
 }
 
