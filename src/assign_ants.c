@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 16:28:56 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/13 16:06:55 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/13 19:25:50 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static t_ant	*init_ant(int i)
 	ant->print = false;
 	ant->finished = false;
 	ant->start = NULL;
+	ft_dprintf(1, "Init ant %d\n", ant->id);
 	return (ant);
 }
 
@@ -48,5 +49,6 @@ void			assign_ants(t_lemin *data, t_room *start_room)
 			}
 			j++;
 		}
+
 	}
 }
