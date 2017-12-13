@@ -6,21 +6,11 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 16:28:56 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/11 20:03:14 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/13 16:06:55 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
-
-static int		get_number_paths(t_room *start_room)
-{
-	int i;
-
-	i = 0;
-	while (start_room->next_start[i])
-		i++;
-	return (i);
-}
 
 static t_ant	*init_ant(int i)
 {
@@ -39,17 +29,15 @@ void			assign_ants(t_lemin *data, t_room *start_room)
 {
 	int		i;
 	int		j;
-	int		nb_paths;
-
+	
 	if (!(data->ants = (t_ant **)malloc(sizeof(t_ant *) * data->num_ants + 1)))
 		ft_protect_malloc();
 	data->ants[data->num_ants] = NULL;
-	nb_paths = get_number_paths(start_room);
 	i = 0;
 	while (i < data->num_ants)
 	{
 		j = 0;
-		while (j < nb_paths)
+		while (j < data->path_number)
 		{
 			if (start_room->next_start[j]->nb_ants > 0 && i < data->num_ants)
 			{

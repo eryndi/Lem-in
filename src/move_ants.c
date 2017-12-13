@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/10 17:01:48 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/11 20:15:40 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/13 16:16:30 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,7 @@ static void	move_forward(t_lemin *data, int i)
 	data->ants[i]->start->free = true;
 	data->ants[i]->start = data->ants[i]->start->next;
 	if (!data->ants[i]->start->is_end)
-	{
 		data->ants[i]->start->free = false;
-	}
 	else
 		data->ants[i]->finished = true;
 	return ;
