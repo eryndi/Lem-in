@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:19:25 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/11 21:58:05 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/12 15:26:35 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,8 @@ int				main(void)
 {
 	t_lemin		data;
 	t_list		*tmp;
-	int			i;
 	t_room		*start_room;
-	//int			j;
 
-	i = 0;
 //	testing_structure(&data);
 //	prepare_structure(&data);
 	if (!init(&data) || !parse(&data))
@@ -73,7 +70,7 @@ int				main(void)
 		free(tmp);
 	}
 	ft_putchar('\n');
-	algo_launcher(&data, i);
+	algo_launcher(&data);
 //test_map(&data);	
 	start_room = decide_paths(&data);
 	assign_ants(&data, start_room);

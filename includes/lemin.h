@@ -6,13 +6,14 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/11 21:19:48 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/13 13:45:48 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEMIN_H
 # define LEMIN_H
 
+//don't forget to enable flags in Makefile and fclean for libft
 /*
 ** ------------------------------ Librairies -----------------------------------
 */
@@ -62,6 +63,7 @@ typedef	struct		s_lemin
 {
 	t_ant			**ants;
 	t_room			*rooms;
+	int				path_number;
 	int				num_ants;
 	bool			start;
 	bool			end;
@@ -73,8 +75,10 @@ typedef	struct		s_lemin
 ** ------------------------------- algo functions ------------------------------
 */
 
-void    algo_launcher(t_lemin *data, int i);
-void    prepare_structure(t_lemin *data);
+void    algo_launcher(t_lemin *data);
+t_room  *get_end_room(t_room *room);
+int     number_of_rooms(t_room *rooms);
+void    clear_map(t_room *room);
 
 /*
 ** ---------------------------- parsing functions ------------------------------
@@ -93,4 +97,5 @@ void				move_ants(t_lemin *data);
 
 void				free_structures(t_lemin *data);
 void				return_error(char *message);
+
 #endif
