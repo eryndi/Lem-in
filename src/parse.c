@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 16:31:26 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/11 21:03:11 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/13 14:52:38 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static int	parse_ants(t_lemin *data)
 			return_error("ERROR number of ants not an int\n");
 		tmp++;
 	}
+	tmp = line;
 	data->num_ants = ft_atoi(line);
 	if (data->num_ants < 1)
 		return_error("ERROR wrong number of ants\n");

@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/13 13:45:48 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/13 15:22:33 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ typedef	struct		s_lemin
 	int				num_ants;
 	bool			start;
 	bool			end;
+	t_room			*s_room;
+	t_room			*e_room;
 	t_list			*lines;
 
 }					t_lemin;
@@ -88,6 +90,7 @@ int					init(t_lemin *data);
 int					init_room(t_room *room, char **room_x_y);
 int					parse(t_lemin *data);
 int					parse_rooms(t_lemin *data);
+void				init_start_end(t_lemin *data, t_room *new_room);
 int					parse_tubes(t_lemin *data, char *line);
 int					make_connections(t_lemin *data);
 
