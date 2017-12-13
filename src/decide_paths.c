@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 19:28:25 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/13 18:24:00 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/13 19:28:57 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static t_room	*find_shortest_path(t_lemin *data, t_room *start_room)
 {
 	int		i;
 	t_room	*shortest;
+
 	i = 0;
 	while (start_room->next_start[i])
 	{
@@ -48,6 +49,7 @@ static void		ant_distribution(t_lemin *data, t_room *start_room)
 		shortest->nb_ants++;
 		shortest->len++;
 		counter++;
+		ft_dprintf(1, "distributed ant number %d\n", counter);
 	}
 	return ;
 }
