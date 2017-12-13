@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/12 15:50:51 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/13 13:45:48 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef	struct		s_lemin
 {
 	t_ant			**ants;
 	t_room			*rooms;
+	int				path_number;
 	int				num_ants;
 	bool			start;
 	bool			end;
