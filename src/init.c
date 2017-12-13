@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 16:41:31 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/11 21:19:29 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/13 13:55:47 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int			init(t_lemin *data)
 {
 	data->ants = NULL;
 	data->rooms = NULL;
+	data->path_number = 0;
 	data->num_ants = -1;
 	data->start = 0;
 	data->end = 0;
