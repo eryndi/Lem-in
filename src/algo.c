@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 10:20:03 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/13 14:18:44 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/13 16:56:13 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,14 @@
 ** So in return you get the minimum distance tree from node START.
 */
 
-static	t_room	*mark_path(t_room *room, int path_number)
-{
-//	ft_dprintf(1, PF_CYAN"Hello from mark path\n"PF_EOC);
-	ft_dprintf(1, PF_CYAN"path_number = %i\n"PF_EOC, path_number);
-	while (room->next != NULL)
-	{
-		ft_dprintf(1, PF_MAGENTA"path room->name = %s\n"PF_EOC, room->name);
-		room->is_path = path_number;
-		room = room->next;
-	}
-	return (room);
-}
-	
-static	t_room	*store_path(t_lemin *data, t_room *start)
+static	t_room	*store_path(t_lemin *data, t_room *start, t_room *vertex, int i)
 {
 	int		paths;
-	int		i;
 	t_room	*end;
 
 	paths = 0;
 	i = 0;
+	start->next = vertex;
 	while (start->connections[paths] != NULL)
 		paths++;
 	if (start->next_start == NULL)
@@ -57,15 +44,17 @@ ft_dprintf(1, PF_CYAN"path_number = %i paths = %i\n"PF_EOC, data->path_number, p
 		start->next = NULL;
 		data->path_number++;
 		return (end);
-//ft_dprintf(1, PF_CYAN"strat->next_strat[%i] = %s path_number = %i paths = %i\n"PF_EOC, i, start->next_start[i]->name, path_number, paths);
 	}
 	else
 		ft_dprintf(1, "Error in number of START paths\n");
 	exit (1);
 }
 
-static	int		get_room_on_pile(t_room *vertex, int n)
+static	int		get_room_to_put_on_pile(t_room *vertex, int n)
 {
+//ft_dprintf(1, PF_MAGENTA"vertex->connections[%d]\n"PF_EOC, n);
+//	if (vertex->connections[n] != NULL) 
+//ft_dprintf(1, PF_MAGENTA"vertex->connections[%d] = %s\n"PF_EOC, n, vertex->connections[n]->name);
 	if (vertex->connections[n] != NULL 
 	&& vertex->connections[n]->is_start == false
 	&& vertex->connections[n]->is_end == false
@@ -81,6 +70,20 @@ static	int		get_room_on_pile(t_room *vertex, int n)
 		return (0);
 }
 
+static	int		dequeue_vertex(int start, int i, t_room **pile, t_room **vertex)
+{
+	while (start < i && pile[start]->is_dequeued == true)
+		start++;
+	if (start == i)
+		return (-1);
+	else if (pile[start]->is_dequeued == false)
+	{
+		*vertex = pile[start];
+		(*vertex)->is_dequeued = true;
+	}
+	return (start);
+}
+
 static	void	bfs_algo(t_lemin *data, t_room *vertex, int len, int i)
 {
 	t_room	*pile[len + 1];
@@ -88,40 +91,27 @@ static	void	bfs_algo(t_lemin *data, t_room *vertex, int len, int i)
 	int		start;
 
 //	ft_dprintf(1, PF_CYAN"Hello from bfs_algo\n"PF_EOC);
+	clear_pile(pile, &start, &n, &i);
 	n = 0;
-	start = 0;
-	ft_bzero(pile, len + 1);
 	while (i < len)
 	{
-		if (get_room_on_pile(vertex, n) == 1)
+		if (get_room_to_put_on_pile(vertex, n) == 1)
+		{
 			pile[i++] = vertex->connections[n];
+			//ft_dprintf(1, "pile[%d] = %p\n", i-1, pile[i - 1]);
+		}
 		else if (vertex->connections[n] == NULL)
 		{
-			while (start < i && pile[start]->is_dequeued == true)
-				start++;
-			if (start == i)
+			if ((start = dequeue_vertex(start, i, pile, &vertex)) == -1)
 				return ;
-			else if (pile[start]->is_dequeued == false)
-			{
-					vertex = pile[start];
-					vertex->is_dequeued = true;
-					n = -1;
-			}
+			else
+				n = -1;
 		}
-		else if (vertex->connections[n]->is_start == true)
-		{
-//			ft_dprintf(1, PF_RED"START\n"PF_EOC);
-			vertex->connections[n]->next = vertex;
-			vertex = store_path(data, vertex->connections[n]);
-			ft_bzero(pile, len + 1);
-//			vertex->connections[n]->next = vertex;
-			start = 0;
-			n = -1;
-			i = 0;
-		}
+		else if ((vertex->connections[n]->is_start == true) && 
+		((vertex = store_path(data, vertex->connections[n], vertex, i))!= NULL))
+			clear_pile(pile, &start, &n, &i);
 		n++;
 	}
-	return ;
 }
 
 void		algo_launcher(t_lemin *data)
@@ -131,11 +121,11 @@ void		algo_launcher(t_lemin *data)
 	int		len;
 	int		i;
 
-	i = 0;
 	if ((end = get_end_room(data->rooms)) == NULL)
 		exit (1);
 	end->next = NULL;
 	end->is_enqueued = true;
 	len = number_of_rooms(data->rooms);
+	i = len + 1;
 	bfs_algo(data, end, len, i);
 }

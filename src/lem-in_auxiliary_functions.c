@@ -6,11 +6,33 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:53:22 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/13 16:13:55 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/13 17:00:00 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+t_room	*mark_path(t_room *room, int path_number)
+{
+//	ft_dprintf(1, PF_CYAN"Hello from mark path\n"PF_EOC);
+	ft_dprintf(1, PF_CYAN"path_number = %i\n"PF_EOC, path_number);
+	while (room->next != NULL)
+	{
+		ft_dprintf(1, PF_MAGENTA"path room->name = %s\n"PF_EOC, room->name);
+		room->is_path = path_number;
+		room = room->next;
+	}
+	return (room);
+}
+
+void    clear_pile(t_room **pile, int *start, int *n, int *i)
+{
+	ft_bzero(pile, *i + 1);
+	*start = 0;
+	*n = -1;
+	*i = 0;
+	return ;
+}
 
 void	clear_map(t_room *room)
 {
