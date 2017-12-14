@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:53:22 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/14 15:43:54 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/14 17:00:41 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ void	allocate_memory(t_room *start, int paths)
 	start->next_start = (t_room**)malloc(sizeof(t_room) * paths + 1);
 	if (start->next_start == NULL)
 		ft_protect_malloc();
-	while (--paths)
+	while (paths)
+	{
 		start->next_start[paths] = NULL;
+		paths--;
+	}
 	return ;
 }
