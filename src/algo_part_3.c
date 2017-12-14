@@ -6,15 +6,17 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 10:20:03 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/14 15:44:46 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/14 15:52:15 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
 /*
-** BFS algorithm finds the minimum distance from node START to all nodes
-** So in return you get the minimum distance tree from node START.
+** Start-end function acts when special case of path is found consisting only
+** of strat and end room. To enable correct resume of algrithm the connection
+** to strat from end address book of connections is removed. The path is,
+** however, properly stored in room->next_start address book.
 */
 
 void	start_end_path(t_lemin *data)
