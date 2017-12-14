@@ -6,15 +6,26 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 10:20:03 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/14 15:41:35 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/14 16:16:10 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
 /*
-** BFS algorithm finds the minimum distance from node START to all nodes
-** So in return you get the minimum distance tree from node START.
+** BFS algorithm finds the minimum distance from node END to all nodes.
+** In return we get the minimum distance tree from node END to START.
+** End node (vertex/room) is visited when it is put on pile (enqueued) and 
+** marked as enqueued. Its connections (aka adjacent nodes) are put on pile
+** until there is no adjacent node left in the address book (room->connections)
+** of the visited node. At this moment, the visited node is marked as deuqueued.
+** Next visited node is the first unvisited node on the pile according to the 
+** FIFO principle.
+** If, during analysis (visiting), a START node is identified on the pile,
+** the node and all the following nodes creating a path from START to END are
+** marked as is_path = true. The path itself dynamically is stored in the 
+** t_room->next pointer. 
+** The pile is renewed ignoring nodes which already participate in a stored path
 */
 
 static	t_room	*store_path(t_lemin *data, t_room *start, t_room *vertex)
