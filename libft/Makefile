@@ -6,7 +6,7 @@
 #    By: dwald <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/05 13:52:24 by dwald             #+#    #+#              #
-#    Updated: 2017/12/02 17:37:01 by dhadley          ###   ########.fr        #
+#    Updated: 2017/12/14 15:15:23 by dwald            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,7 @@ SRC_FILES	=	ft_atoi.c \
 				ft_strsub.c \
 				ft_strtrim.c \
 				ft_swap.c \
+				ft_swap_pointers.c \
 				ft_tolower.c \
 				ft_toupper.c \
 				get_next_line.c \
