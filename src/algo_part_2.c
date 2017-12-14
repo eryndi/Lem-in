@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in_auxiliary_functions.c                       :+:      :+:    :+:   */
+/*   algo_part_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:53:22 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/14 14:20:53 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/14 15:43:54 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 void	mark_path(t_room *room, int path_number)
 {
 	unsigned	int	length;
-	t_room 			*strat_next;
+	t_room			*strat_next;
 
 	length = 0;
 	strat_next = room;
 //	ft_dprintf(1, PF_CYAN"Hello from mark path\n"PF_EOC);
-	ft_dprintf(1, PF_CYAN"path_number to mark = %i\n"PF_EOC, path_number);
+//	ft_dprintf(1, PF_CYAN"path_number to mark = %i\n"PF_EOC, path_number);
 	while (room != NULL)
 	{
-		ft_dprintf(1, PF_MAGENTA"path room->name = %s\n"PF_EOC, room->name);
+//		ft_dprintf(1, PF_MAGENTA"path room->name = %s\n"PF_EOC, room->name);
 		room->is_path = path_number;
 		room = room->next;
 		length++;
 	}
 	strat_next->len = length;
-	ft_dprintf(1, "len = %d\n", strat_next->len);
+//	ft_dprintf(1, "len = %d\n", strat_next->len);
 	return ;
 }
 
-void    clear_pile(t_room **pile, int *start, int *n, int *i)
+void	clear_pile(t_room **pile, int *start, int *n, int *i)
 {
 	ft_bzero(pile, *i + 1);
 	*start = 0;
@@ -44,7 +44,7 @@ void    clear_pile(t_room **pile, int *start, int *n, int *i)
 
 void	clear_map(t_room *room)
 {
-	while(room != NULL)
+	while (room != NULL)
 	{
 		if (room->next != NULL)
 			room->is_enqueued = false;
@@ -58,7 +58,7 @@ int		number_of_rooms(t_room *rooms)
 	int		len;
 	t_room	*end;
 //	ft_dprintf(1, PF_CYAN"Hello from number of rooms\n"PF_EOC);
-	
+
 	len = 0;
 	end = rooms;
 	while (end != NULL)
@@ -71,7 +71,7 @@ int		number_of_rooms(t_room *rooms)
 
 void	allocate_memory(t_room *start, int paths)
 {
-	start->next_start = (t_room**)malloc(sizeof(t_room)*paths + 1);
+	start->next_start = (t_room**)malloc(sizeof(t_room) * paths + 1);
 	if (start->next_start == NULL)
 		ft_protect_malloc();
 	while (--paths)

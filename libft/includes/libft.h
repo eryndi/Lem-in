@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 12:11:36 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/14 13:55:18 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/14 15:14:26 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ char				*ft_itoa_base_upper_ull(unsigned long long value, int base);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
 void				ft_swap(int *a, int *b);
+void				ft_swap_pointers(void **a, void **b);
 
 /*
 ** ---------------------- linked lists manipulation ---------------------------

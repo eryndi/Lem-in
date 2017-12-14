@@ -6,15 +6,16 @@
 #    By: dwald <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 14:50:39 by dwald             #+#    #+#              #
-#    Updated: 2017/12/12 15:38:07 by dwald            ###   ########.fr        #
+#    Updated: 2017/12/14 15:36:57 by dwald            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	lem-in
 
 SRC_FILES	=	main.c \
-				lem-in_auxiliary_functions.c \
-				algo.c \
+				algo_part_1.c \
+				algo_part_2.c \
+				algo_part_3.c \
 				init.c \
 				parse.c \
 				parse_rooms.c \
