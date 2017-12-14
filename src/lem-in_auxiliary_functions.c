@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:53:22 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/13 18:40:40 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/14 14:20:53 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	mark_path(t_room *room, int path_number)
 	length = 0;
 	strat_next = room;
 //	ft_dprintf(1, PF_CYAN"Hello from mark path\n"PF_EOC);
-	ft_dprintf(1, PF_CYAN"path_number = %i\n"PF_EOC, path_number);
-	while (room->next != NULL)
+	ft_dprintf(1, PF_CYAN"path_number to mark = %i\n"PF_EOC, path_number);
+	while (room != NULL)
 	{
 		ft_dprintf(1, PF_MAGENTA"path room->name = %s\n"PF_EOC, room->name);
 		room->is_path = path_number;
@@ -29,6 +29,7 @@ void	mark_path(t_room *room, int path_number)
 		length++;
 	}
 	strat_next->len = length;
+	ft_dprintf(1, "len = %d\n", strat_next->len);
 	return ;
 }
 
