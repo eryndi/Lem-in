@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:19:25 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/13 19:02:09 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/14 16:50:21 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ int				main(void)
 	ft_putchar('\n');
 	algo_launcher(&data);
 ft_dprintf(1, PF_GREEN"algo is finished launching decide paths\n"PF_EOC);
-//test_map(&data);	
+//test_map(&data);
+	ft_dprintf(1, "The start room name %s has next start %s of len %d\n", data.s_room->name, data.s_room->next_start[0]->name, data.s_room->next_start[0]->len);
 	decide_paths(&data);
 	ft_putstr("assigning ants\n");
 	assign_ants(&data, data.s_room);
