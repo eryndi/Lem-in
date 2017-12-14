@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 10:20:03 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/13 18:56:15 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/14 14:23:12 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,45 @@
 ** So in return you get the minimum distance tree from node START.
 */
 
+static void    ft_swape(void **a, void **b)
+{
+    void     *tmp;
+
+    tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+
+static	void	start_end_path(t_lemin *data)
+{
+	int		end_address;
+	int		n;
+	t_room	*tmp;
+
+	n = 0;
+	while (data->e_room->connections[n] != NULL)
+	{
+		if (data->e_room->connections[n] == data->s_room)
+		{
+			end_address = n;
+			break;
+		}
+		n++;
+	}
+	while (data->e_room->connections[n] != NULL)
+		n++;
+//ft_swape(data->e_room->connections[end_address], data->e_room->connections[n - 1]);
+	tmp = data->e_room->connections[end_address];
+	data->e_room->connections[end_address] = data->e_room->connections[n - 1];
+	data->e_room->connections[n - 1] = tmp;
+	data->e_room->connections[n - 1] = NULL;
+	return ;
+}
+
 static	t_room	*store_path(t_lemin *data, t_room *start, t_room *vertex)
 {
 	int		paths;
+//	ft_dprintf(1, PF_CYAN"Hello from store_path\n"PF_EOC);
 
 	paths = 0;
 	start->next = vertex;
@@ -35,8 +71,8 @@ ft_dprintf(1, PF_CYAN"path_number = %i paths = %i\n"PF_EOC, data->path_number, p
 		clear_map(data->rooms);
 		if (start->next == data->e_room)
 		{
-//	ft_dprintf(1, PF_RED"Hello\n"PF_EOC);
-			return (NULL);
+	ft_dprintf(1, PF_RED"Hello\n"PF_EOC);
+			start_end_path(data);
 		}
 		start->next = NULL;
 		data->path_number++;
@@ -63,19 +99,13 @@ static	int		get_room_to_put_on_pile(t_room *vertex, int n)
 		vertex->connections[n]->is_enqueued = true;
 		return (1);
 	}
-	if (vertex->connections[n] != NULL 
-	&& vertex->connections[n]->is_start == true
-	&& vertex->is_end == true)
-	{
-	ft_dprintf(1, PF_RED"Hello\n"PF_EOC);
-		return (0);
-	}
 	else
 		return (0);
 }
 
 static	int		dequeue_vertex(int start, int i, t_room **pile, t_room **vertex)
 {
+//	ft_dprintf(1, PF_CYAN"Hello dequeue vertex\n"PF_EOC);
 	while (start < i && pile[start]->is_dequeued == true)
 		start++;
 	if (start == i)
@@ -85,6 +115,7 @@ static	int		dequeue_vertex(int start, int i, t_room **pile, t_room **vertex)
 		*vertex = pile[start];
 		(*vertex)->is_dequeued = true;
 	}
+//	ft_dprintf(1, PF_CYAN"pile[%d] = %p %s\n"PF_EOC, start, pile[start], pile[start]->name);
 	return (start);
 }
 
@@ -97,12 +128,13 @@ static	void	bfs_algo(t_lemin *data, t_room *vertex, int length, int i)
 //	ft_dprintf(1, PF_CYAN"Hello from bfs_algo\n"PF_EOC);
 	clear_pile(pile, &start, &n, &i);
 	n = -1;
+	pile[i++] = vertex;
 	while (i < length)
 	{
 		if (get_room_to_put_on_pile(vertex, ++n) == 1)
 		{
+//			ft_dprintf(1, PF_RED"New connection on pile\n"PF_EOC);
 			pile[i++] = vertex->connections[n];
-			ft_dprintf(1, "pile[%d] = %p\n", i-1, pile[i - 1]);
 		}
 		else if (vertex->connections[n] == NULL)
 		{
@@ -110,8 +142,9 @@ static	void	bfs_algo(t_lemin *data, t_room *vertex, int length, int i)
 				return ;
 			else
 				n = -1;
+//ft_dprintf(1, PF_MAGENTA"vertex = %s is start = %d is dequ = %d\n"PF_EOC, vertex->name, vertex->is_start, vertex->is_dequeued);
 		}
-		else if ((vertex->connections[n]->is_start == true) && 
+		else if ((vertex->connections[n]->is_start == true) &&
 		((vertex = store_path(data, vertex->connections[n], vertex)) != NULL))
 			clear_pile(pile, &start, &n, &i);
 		if (vertex == NULL)
@@ -126,7 +159,7 @@ void		algo_launcher(t_lemin *data)
 	int		i;
 
 	data->e_room->next = NULL;
-	data->e_room->is_enqueued = true;
+	data->e_room->is_enqueued = false;
 	length = number_of_rooms(data->rooms);
 	i = length + 1;
 	bfs_algo(data, data->e_room, length, i);
