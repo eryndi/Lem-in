@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 19:28:25 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/13 16:19:45 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/14 16:29:12 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static t_room	*find_shortest_path(t_lemin *data, t_room *start_room)
 			shortest = start_room->next_start[i];
 		i++;
 	}
+ft_dprintf(1, "The second time it is %d\n", start_room->next_start[0]->len);
 	return (shortest);
 }
 

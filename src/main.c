@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:19:25 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/13 18:42:59 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/14 16:28:47 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int				main(void)
 	algo_launcher(&data);
 ft_dprintf(1, PF_GREEN"algo is finished launching decide paths\n"PF_EOC);
 //test_map(&data);	
+ft_dprintf(1, "The len is %d\n", data.s_room->next_start[0]->len);
 	decide_paths(&data);
 	assign_ants(&data, data.s_room);
 //	j = 0;
