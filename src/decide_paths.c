@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 19:28:25 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/13 19:28:57 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/14 16:30:43 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ static t_room	*find_shortest_path(t_lemin *data, t_room *start_room)
 {
 	int		i;
 	t_room	*shortest;
-
+ft_putstr("inside find shortest path\n");
+ft_putstr("about to print the len\n");
+ft_dprintf(1, "The len is %d\n", start_room->next_start[0]->len);
+ft_putstr("len fetched\n");
 	i = 0;
 	while (start_room->next_start[i])
 	{
