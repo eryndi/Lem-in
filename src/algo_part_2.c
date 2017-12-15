@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:53:22 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/14 16:25:11 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/15 10:00:16 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,13 @@ void	mark_path(t_room *room, int path_number)
 
 	length = 0;
 	start_next = room;
-	ft_dprintf(1, "name %s\n", start_next->name);
-//	ft_dprintf(1, PF_CYAN"Hello from mark path\n"PF_EOC);
-//	ft_dprintf(1, PF_CYAN"path_number to mark = %i\n"PF_EOC, path_number);
 	while (room != NULL)
 	{
-		ft_dprintf(1, PF_MAGENTA"path room->name = %s\n"PF_EOC, room->name);
 		room->is_path = path_number;
 		room = room->next;
 		length++;
 	}
 	start_next->len = length;
-	ft_dprintf(1, "len = %d name %s\n", start_next->len, start_next->name);
 	return ;
 }
 
@@ -58,7 +53,6 @@ int		number_of_rooms(t_room *rooms)
 {
 	int		len;
 	t_room	*end;
-//	ft_dprintf(1, PF_CYAN"Hello from number of rooms\n"PF_EOC);
 
 	len = 0;
 	end = rooms;
@@ -75,7 +69,7 @@ void	allocate_memory(t_room *start, int paths)
 	start->next_start = (t_room**)malloc(sizeof(t_room) * paths + 1);
 	if (start->next_start == NULL)
 		ft_protect_malloc();
-	while (--paths)
-		start->next_start[paths] = NULL;
+	while (paths)
+		start->next_start[paths--] = NULL;
 	return ;
 }
