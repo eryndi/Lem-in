@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/10 17:01:48 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/13 16:16:30 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/15 12:12:21 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,30 @@
 
 static void	print_ants(t_lemin *data)
 {
-	int i;
-	int token;
+	int		i;
+	int		token;
+	char	color_code[9];
 
 	i = 0;
 	token = 0;
+	ft_bzero(color_code, 8);
+	ft_dprintf(1, " here ");
 	while (i < data->num_ants)
 	{
 		if (data->ants[i]->print)
 		{
+			color_that_ant(data->ants[i]->id, color_code);
 			if (token == 0)
 			{
-				ft_dprintf(1, "L%d-%s", data->ants[i]->id,
-						data->ants[i]->start->name);
+				ft_dprintf(1, "%sL%d-%s%s", color_code, data->ants[i]->id,
+						data->ants[i]->start->name, PF_EOC);
 				token = 1;
 			}
 			else
-				ft_dprintf(1, " L%d-%s", data->ants[i]->id,
-						data->ants[i]->start->name);
+			{
+				ft_dprintf(1, " %sL%d-%s%s", color_code, data->ants[i]->id,
+						data->ants[i]->start->name, PF_EOC);
+			}
 		}
 		i++;
 	}
