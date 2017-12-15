@@ -6,20 +6,18 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/14 15:37:44 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/15 11:42:40 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEMIN_H
 # define LEMIN_H
 
-//don't forget to enable flags in Makefile and fclean for libft
 /*
 ** ------------------------------ Librairies -----------------------------------
 */
 
 # include "libft.h"
-# include <errno.h>
 
 /*
 ** ---------------------------- lem_in variables -------------------------------
@@ -84,6 +82,7 @@ void	clear_map(t_room *room);
 void	clear_pile(t_room **pile, int *start, int *n, int *i);
 void	allocate_memory(t_room *start, int paths);
 void	start_end_path(t_lemin *data);
+
 /*
 ** ---------------------------- parsing functions ------------------------------
 */
@@ -96,9 +95,14 @@ void				init_start_end(t_lemin *data, t_room *new_room);
 int					parse_tubes(t_lemin *data, char *line);
 int					make_connections(t_lemin *data);
 
+/*
+** ---------------------------- ants' functions --------------------------------
+*/
+
 void				decide_paths(t_lemin *data);
 void				assign_ants(t_lemin *data, t_room *start_room);
 void				move_ants(t_lemin *data);
+char				*color_that_ant(int id, char *s);
 
 void				free_structures(t_lemin *data);
 void				return_error(char *message);

@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/25 17:50:32 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/15 11:37:42 by dwald            ###   ########.fr       */
+/*   Created: 2017/12/15 11:21:17 by dwald             #+#    #+#             */
+/*   Updated: 2017/12/15 12:10:44 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lemin.h"
 
-char	*ft_strcat(char *s1, const char *s2)
+char	*color_that_ant(int id, char *s)
 {
-	int	i;
-	int j;
-
-	j = 0;
-	i = ft_strlen(s1);
-	while (s2[j] != '\0')
-		s1[i++] = s2[j++];
-	s1[i] = '\0';
-	return (s1);
+	 ft_dprintf(1, " HELLO ");
+	if (id % 7 == 1)
+		s = ft_strcat(s, PF_RED);
+	if (id % 7 == 2)
+		s = ft_strcat(s, PF_GREEN);
+	if (id % 7 == 3)
+		s = ft_strcat(s, PF_YELLOW);
+	if (id % 7 == 4)
+		s = ft_strcat(s, PF_BLUE);
+	if (id % 7 == 5)
+		s = ft_strcat(s, PF_MAGENTA);
+	if (id % 7 == 6)
+		s = ft_strcat(s, PF_CYAN);
+	return (s);
 }
