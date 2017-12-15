@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:19:25 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/15 11:25:30 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/15 11:36:43 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,5 @@ int				main(void)
 	assign_ants(&data, data.s_room);
 	move_ants(&data);
 	free_structures(&data);
-	while (42)
-		;
 	return (0);
 }

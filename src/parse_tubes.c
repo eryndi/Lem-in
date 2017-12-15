@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 21:11:54 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/15 11:31:23 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/15 11:58:18 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ static char	**check_line_tabs(t_lemin *data, char *line)
 int			parse_tubes(t_lemin *data, char *line)
 {
 	char	**name_name;
+	char	*new_line;
 
 	if (!(name_name = check_line_tabs(data, line)))
 		return_error("ERROR wrong connection format\n");
@@ -109,11 +110,11 @@ int			parse_tubes(t_lemin *data, char *line)
 		return_error("ERROR connection already exists\n");
 	free(name_name);
 	ft_list_push_end(&data->lines, line);
-	while (get_next_line(0, &line) == 1)
+	while (get_next_line(0, &new_line) == 1)
 	{
 		if (!(line[0] == '#'))
 		{
-			if (!(name_name = check_line_tabs(data, line)))
+			if (!(name_name = check_line_tabs(data, new_line)))
 				return_error("ERROR wrong connection format\n");
 			if (!(check_exists(data, name_name[0], name_name[1])))
 				return_error("ERROR tube name doesnt exist\n");
@@ -121,7 +122,7 @@ int			parse_tubes(t_lemin *data, char *line)
 				return_error("ERROR connection already exists\n");
 			free(name_name);
 		}
-		ft_list_push_end(&data->lines, line);
+		ft_list_push_end(&data->lines, new_line);
 	}
 	return (1);
 }
