@@ -6,13 +6,13 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 19:28:25 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/14 16:29:12 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/15 11:30:56 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static t_room	*find_shortest_path(t_lemin *data, t_room *start_room)
+static t_room	*find_shortest_path(t_room *start_room)
 {
 	int		i;
 	t_room	*shortest;
@@ -20,7 +20,7 @@ static t_room	*find_shortest_path(t_lemin *data, t_room *start_room)
 	i = 0;
 	while (start_room->next_start[i])
 	{
-		if (start_room->next_start[i + 1])
+		if (start_room->next_start[i + 1] != NULL)
 		{
 			if (start_room->next_start[i]->len <=
 					start_room->next_start[i + 1]->len)
@@ -33,22 +33,20 @@ static t_room	*find_shortest_path(t_lemin *data, t_room *start_room)
 			shortest = start_room->next_start[i];
 		i++;
 	}
-ft_dprintf(1, "The second time it is %d\n", start_room->next_start[0]->len);
 	return (shortest);
 }
 
 static void		ant_distribution(t_lemin *data, t_room *start_room)
 {
 	int		counter;
-	int		i;
 	t_room	*shortest;
 
 	counter = 0;
 	while (counter <= data->num_ants)
 	{
-		shortest = find_shortest_path(data, start_room);
-		shortest->nb_ants++;
-		shortest->len++;
+		shortest = find_shortest_path(start_room);
+		shortest->nb_ants = shortest->nb_ants + 1;
+		shortest->len = shortest->len + 1;
 		counter++;
 	}
 	return ;

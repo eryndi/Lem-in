@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 11:21:17 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/15 12:10:44 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/15 12:23:28 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,17 @@
 
 char	*color_that_ant(int id, char *s)
 {
-	 ft_dprintf(1, " HELLO ");
-	if (id % 7 == 1)
-		s = ft_strcat(s, PF_RED);
-	if (id % 7 == 2)
-		s = ft_strcat(s, PF_GREEN);
-	if (id % 7 == 3)
-		s = ft_strcat(s, PF_YELLOW);
-	if (id % 7 == 4)
-		s = ft_strcat(s, PF_BLUE);
-	if (id % 7 == 5)
-		s = ft_strcat(s, PF_MAGENTA);
-	if (id % 7 == 6)
-		s = ft_strcat(s, PF_CYAN);
+	if (id % 6 == 1)
+		s = ft_strcpy(s, PF_RED);
+	if (id % 6 == 2)
+		s = ft_strcpy(s, PF_GREEN);
+	if (id % 6 == 3)
+		s = ft_strcpy(s, PF_YELLOW);
+	if (id % 6 == 4)
+		s = ft_strcpy(s, PF_BLUE);
+	if (id % 6 == 5)
+		s = ft_strcpy(s, PF_MAGENTA);
+	if (id % 6 == 0)
+		s = ft_strcpy(s, PF_CYAN);
 	return (s);
 }
