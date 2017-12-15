@@ -6,7 +6,7 @@
 #    By: dwald <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 14:50:39 by dwald             #+#    #+#              #
-#    Updated: 2017/12/14 15:36:57 by dwald            ###   ########.fr        #
+#    Updated: 2017/12/15 10:03:33 by dwald            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ LIBFTA		=	libft.a
 
 CC			=	gcc
 
-FLAGS		=	#-Wextra -Werror -Wall
+FLAGS		=	-Wextra -Werror -Wall
 
 GREEN		=   \033[92m
 BLACK		=   \033[30m
@@ -76,7 +76,7 @@ clean:
 
 fclean:			clean
 				/bin/rm -f $(NAME)
-#				make fclean -C $(LIBFT_PATH)
+				make fclean -C $(LIBFT_PATH)
 				@echo "$(RED)---lem-in removed completely---$(NC)"
 
 re:				fclean all

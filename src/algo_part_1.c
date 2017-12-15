@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 10:20:03 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/14 16:16:10 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/15 10:00:59 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,22 @@
 /*
 ** BFS algorithm finds the minimum distance from node END to all nodes.
 ** In return we get the minimum distance tree from node END to START.
-** End node (vertex/room) is visited when it is put on pile (enqueued) and 
+** End node (vertex/room) is visited when it is put on pile (enqueued) and
 ** marked as enqueued. Its connections (aka adjacent nodes) are put on pile
 ** until there is no adjacent node left in the address book (room->connections)
 ** of the visited node. At this moment, the visited node is marked as deuqueued.
-** Next visited node is the first unvisited node on the pile according to the 
+** Next visited node is the first unvisited node on the pile according to the
 ** FIFO principle.
 ** If, during analysis (visiting), a START node is identified on the pile,
 ** the node and all the following nodes creating a path from START to END are
-** marked as is_path = true. The path itself dynamically is stored in the 
-** t_room->next pointer. 
+** marked as is_path = true. The path itself dynamically is stored in the
+** t_room->next pointer.
 ** The pile is renewed ignoring nodes which already participate in a stored path
 */
 
 static	t_room	*store_path(t_lemin *data, t_room *start, t_room *vertex)
 {
 	int		paths;
-//	ft_dprintf(1, PF_CYAN"Hello from store_path\n"PF_EOC);
 
 	paths = 0;
 	start->next = vertex;
@@ -39,7 +38,6 @@ static	t_room	*store_path(t_lemin *data, t_room *start, t_room *vertex)
 		paths++;
 	if (start->next_start == NULL)
 		allocate_memory(start, paths);
-//ft_dprintf(1, PF_CYAN"path_number = %i paths = %i\n"PF_EOC, data->path_number, paths);
 	if (data->path_number < paths)
 	{
 		start->next_start[data->path_number] = start->next;
@@ -52,8 +50,7 @@ static	t_room	*store_path(t_lemin *data, t_room *start, t_room *vertex)
 		return (data->e_room);
 	}
 	else
-		ft_dprintf(1, "Error in number of START paths\n");
-	exit(1);
+		exit(1);
 }
 
 static	int		get_room_to_put_on_pile(t_room *vertex, int n)
@@ -75,7 +72,6 @@ static	int		get_room_to_put_on_pile(t_room *vertex, int n)
 
 static	int		dequeue_vertex(int start, int i, t_room **pile, t_room **vertex)
 {
-//	ft_dprintf(1, PF_CYAN"Hello dequeue vertex\n"PF_EOC);
 	while (start < i && pile[start]->is_dequeued == true)
 		start++;
 	if (start == i)
@@ -94,7 +90,6 @@ static	void	bfs_algo(t_lemin *data, t_room *vertex, int length, int i)
 	int		n;
 	int		start;
 
-//	ft_dprintf(1, PF_CYAN"Hello from bfs_algo\n"PF_EOC);
 	clear_pile(pile, &start, &n, &i);
 	n = -1;
 	pile[i++] = vertex;
@@ -120,7 +115,6 @@ void			algo_launcher(t_lemin *data)
 	int		length;
 	int		i;
 
-//	ft_dprintf(1, PF_CYAN"Hello from algo_launcher\n"PF_EOC);
 	data->e_room->next = NULL;
 	data->e_room->is_enqueued = false;
 	length = number_of_rooms(data->rooms);
