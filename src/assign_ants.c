@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 16:28:56 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/14 17:05:59 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/15 11:30:21 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void			assign_ants(t_lemin *data, t_room *start_room)
 {
 	int		i;
 	int		j;
-	
+
 	if (!(data->ants = (t_ant **)malloc(sizeof(t_ant *) * data->num_ants + 1)))
 		ft_protect_malloc();
 	data->ants[data->num_ants] = NULL;
@@ -48,6 +48,5 @@ void			assign_ants(t_lemin *data, t_room *start_room)
 			}
 			j++;
 		}
-
 	}
 }
