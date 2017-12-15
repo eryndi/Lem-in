@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/10 17:01:48 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/15 12:17:15 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/15 12:24:42 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,8 @@ static void	print_ants(t_lemin *data)
 				token = 1;
 			}
 			else
-			{
 				ft_dprintf(1, " %sL%d-%s%s", color_code, data->ants[i]->id,
 						data->ants[i]->start->name, PF_EOC);
-			}
 		}
 		i++;
 	}
