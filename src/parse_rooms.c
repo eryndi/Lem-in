@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 17:45:09 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/13 18:51:04 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/15 11:20:23 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,10 @@ static int	check_room(t_lemin *data, char *line, int *token)
 	if (i != 3 || room_x_y[0][0] == '#' || room_x_y[0][0] == 'L')
 		return_error("ERROR invalid room\n");
 	if (fill_room(data, room_x_y, token))
+	{
+		free(room_x_y);
 		return (1);
+	}
 	return (0);
 }
 

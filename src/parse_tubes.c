@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 21:11:54 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/13 18:48:08 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/15 11:21:19 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int			parse_tubes(t_lemin *data, char *line)
 		return_error("ERROR room name doesnt exist\n");
 	if (!add_tube(data, name_name[0], name_name[1]))
 		return_error("ERROR connection already exists\n");
+	free(name_name);
 	ft_list_push_end(&data->lines, line);
 	while (get_next_line(0, &line) == 1)
 	{
@@ -119,6 +120,7 @@ int			parse_tubes(t_lemin *data, char *line)
 				return_error("ERROR tube name doesnt exist\n");
 			if (!add_tube(data, name_name[0], name_name[1]))
 				return_error("ERROR connection already exists\n");
+			free(name_name);
 		}
 		ft_list_push_end(&data->lines, line);
 	}
