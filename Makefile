@@ -6,7 +6,7 @@
 #    By: dwald <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 14:50:39 by dwald             #+#    #+#              #
-#    Updated: 2017/12/15 11:22:22 by dhadley          ###   ########.fr        #
+#    Updated: 2017/12/15 11:25:45 by dhadley          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,7 @@ clean:
 
 fclean:			clean
 				/bin/rm -f $(NAME)
-#				make fclean -C $(LIBFT_PATH)
+				make fclean -C $(LIBFT_PATH)
 				@echo "$(RED)---lem-in removed completely---$(NC)"
 
 re:				fclean all
