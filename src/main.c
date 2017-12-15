@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:19:25 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/15 11:50:20 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/15 12:14:34 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,9 @@ int				main(void)
 	}
 	ft_putchar('\n');
 	algo_launcher(&data);
-ft_dprintf(1, PF_GREEN"algo is finished launching decide paths\n"PF_EOC);
-//test_map(&data);	
-ft_dprintf(1, "The len is %d\n", data.s_room->next_start[0]->len);
 	decide_paths(&data);
 	assign_ants(&data, data.s_room);
-//	j = 0;
-//	while (data.ants[j] != NULL)
-//	{
-//		ft_dprintf(1, "The ant number %d is starting in room %s\n", data.ants[j]->id, data.ants[j]->start->name);
-//		j++;
-//	}
 	move_ants(&data);
 	free_structures(&data);
-//	while (42)
-//		;
 	return (0);
 }
