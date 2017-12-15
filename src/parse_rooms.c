@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 17:45:09 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/15 11:20:23 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/15 11:35:48 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static int	fill_room(t_lemin *data, char **room_x_y, int *token)
 	else
 		i = add_room(data, new_room, i);
 	init_start_end(data, new_room);
+	free(room_x_y);
 	return (i);
 }
 
@@ -69,6 +70,7 @@ static int	check_room(t_lemin *data, char *line, int *token)
 	char	*tmp;
 	char	**room_x_y;
 
+	i = 0;
 	tmp = line;
 	while (*tmp)
 	{
@@ -85,10 +87,7 @@ static int	check_room(t_lemin *data, char *line, int *token)
 	if (i != 3 || room_x_y[0][0] == '#' || room_x_y[0][0] == 'L')
 		return_error("ERROR invalid room\n");
 	if (fill_room(data, room_x_y, token))
-	{
-		free(room_x_y);
 		return (1);
-	}
 	return (0);
 }
 
@@ -123,7 +122,6 @@ static int	check_command(t_lemin *data, char *line, int *token)
 int			parse_rooms(t_lemin *data)
 {
 	char	*line;
-	t_room	*room;
 	int		token;
 	int		i;
 

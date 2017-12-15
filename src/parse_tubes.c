@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 21:11:54 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/15 11:21:19 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/15 11:31:23 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static int	check_double(t_room *room, char *name)
 	{
 		while (tmp->next)
 		{
-	//		if (ft_strequ(tmp->name, name))
-	//			return (0);
+			if (ft_strequ(tmp->name, name))
+				return (0);
 			tmp = tmp->next;
 		}
 	}
@@ -99,7 +99,6 @@ static char	**check_line_tabs(t_lemin *data, char *line)
 
 int			parse_tubes(t_lemin *data, char *line)
 {
-	char	*tmp;
 	char	**name_name;
 
 	if (!(name_name = check_line_tabs(data, line)))
