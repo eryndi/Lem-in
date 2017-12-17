@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/17 15:59:42 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/17 16:07:10 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ typedef	struct		s_lemin
 ** ------------------------------- algo functions ------------------------------
 */
 
-void	algo_launcher(t_lemin *data);
-void	mark_path(t_lemin *data, t_room *room, int path_number);
-int		number_of_rooms(t_room *rooms);
-void	clear_map(t_room *room);
-void	clear_pile(t_room **pile, int *start, int *n, int *i);
-void	allocate_memory(t_room *start, int paths);
-void	start_end_path(t_lemin *data);
+void				algo_launcher(t_lemin *data);
+void				mark_path(t_lemin *data, t_room *room, int path_number);
+int					number_of_rooms(t_room *rooms);
+void				clear_map(t_room *room);
+void				clear_pile(t_room **pile, int *start, int *n, int *i);
+void				allocate_memory(t_room *start, int paths);
+void				start_end_path(t_lemin *data);
 
 /*
 ** ---------------------------- parsing functions ------------------------------
