@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 10:20:03 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/15 10:00:59 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/17 15:59:13 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static	t_room	*store_path(t_lemin *data, t_room *start, t_room *vertex)
 	if (data->path_number < paths)
 	{
 		start->next_start[data->path_number] = start->next;
-		mark_path(start->next, data->path_number);
+		mark_path(data, start->next, data->path_number);
 		clear_map(data->rooms);
 		if (start->next == data->e_room)
 			start_end_path(data);
