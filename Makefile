@@ -6,7 +6,7 @@
 #    By: dwald <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 14:50:39 by dwald             #+#    #+#              #
-#    Updated: 2017/12/15 11:25:45 by dhadley          ###   ########.fr        #
+#    Updated: 2017/12/17 16:03:24 by dhadley          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC_FILES	=	main.c \
 				move_ants.c \
 				free_structures.c \
 				return_error.c \
+				tuto.c \
 
 SRC_PATH	=	src
 

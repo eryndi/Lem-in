@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 21:11:54 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/15 12:03:54 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/17 16:13:44 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int			parse_tubes(t_lemin *data, char *line)
 	ft_list_push_end(&data->lines, line);
 	while (get_next_line(0, &new_line) == 1)
 	{
-		if (!(line[0] == '#'))
+		if (!(new_line[0] == '#'))
 		{
 			if (!(name_name = check_line_tabs(data, new_line)))
 				return_error("ERROR wrong connection format\n");

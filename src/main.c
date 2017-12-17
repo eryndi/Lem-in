@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:19:25 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/15 11:36:43 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/17 16:15:20 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int				main(void)
 {
 	t_lemin		data;
 	t_list		*tmp;
-
+	
 	if (!init(&data) || !parse(&data))
 	{
 		ft_putstr("ERROR\n");
@@ -31,9 +31,13 @@ int				main(void)
 		free(tmp);
 	}
 	ft_putchar('\n');
+	ft_putstr("launch algo\n");
 	algo_launcher(&data);
+	ft_putstr("launch decide paths\n");
 	decide_paths(&data);
+	ft_putstr("launch assign ants\n");
 	assign_ants(&data, data.s_room);
+	ft_putstr("launch move ants\n");
 	move_ants(&data);
 	free_structures(&data);
 	return (0);
