@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 10:20:03 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/17 16:40:01 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/17 17:10:30 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ static	void	bfs_algo(t_lemin *data, t_room *vertex, int length, int i)
 	int		start;
 
 	clear_pile(pile, &start, &n, &i);
-	n = -1;
 	pile[i++] = vertex;
 	while (i < length)
 	{
@@ -101,7 +100,11 @@ static	void	bfs_algo(t_lemin *data, t_room *vertex, int length, int i)
 		else if (vertex->connections[n] == NULL)
 		{
 			if ((start = dequeue_vertex(start, i, pile, &vertex)) == -1)
+			{
+				if (data->s_room->next_start == NULL)
+					return_error("ERROR no path found\n");
 				return ;
+			}
 			else
 				n = -1;
 		}

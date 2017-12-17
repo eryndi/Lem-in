@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:53:22 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/17 16:02:41 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/17 16:53:22 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ void	mark_path(t_lemin *data, t_room *room, int path_number)
 
 	length = 0;
 	ft_dprintf(1, PF_UNDERLINE"Path #%d : ", path_number + 1);
-	ft_dprintf(1, "%s ", data->s_room->name);
+	ft_dprintf(1, "%s "PF_EOC, data->s_room->name);
 	start_next = room;
 	while (room != NULL)
 	{
 		room->is_path = path_number;
-		ft_dprintf(1, "%s ", room->name);
+		ft_dprintf(1, PF_UNDERLINE"%s "PF_EOC, room->name);
 		room = room->next;
 		length++;
 	}
-	ft_dprintf(1, "\n"PF_EOC);
+	ft_putchar('\n');
 	start_next->len = length;
 	return ;
 }
