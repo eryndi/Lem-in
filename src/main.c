@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:19:25 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/17 16:45:39 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/17 16:48:57 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ int				main(void)
 	}
 	ft_putchar('\n');
 	algo_launcher(&data);
+	ft_putchar('\n');
 	decide_paths(&data);
 	assign_ants(&data, data.s_room);
 	move_ants(&data);
-	ft_putstr("\n");
 	free_structures(&data);
 	return (0);
 }
