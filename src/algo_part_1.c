@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 10:20:03 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/17 15:59:13 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/17 16:40:01 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ static	t_room	*store_path(t_lemin *data, t_room *start, t_room *vertex)
 		return (data->e_room);
 	}
 	else
-		exit(1);
+		return_error("ERROR more paths than possible\n");
+	exit(1);
 }
 
 static	int		get_room_to_put_on_pile(t_room *vertex, int n)

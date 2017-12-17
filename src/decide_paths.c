@@ -6,11 +6,21 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 19:28:25 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/17 16:16:11 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/17 16:40:13 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+static int		replace_path_number(t_room *start_room)
+{
+	int i;
+
+	i = 0;
+	while (start_room->next_start[i])
+		i++;
+	return (i);
+}
 
 static t_room	*find_shortest_path(t_room *start_room)
 {
@@ -57,21 +67,21 @@ void			decide_paths(t_lemin *data)
 	int		i;
 
 	i = 0;
-	while (data->s_room->next_start[i])
-		i++;
+	i = replace_path_number(data->s_room);
 	while (data->num_ants < i)
 	{
 		i--;
 		data->s_room->next_start[i] = NULL;
 	}
-	i = data->path_number - 1;
-	while (i > 0)
+	i = replace_path_number(data->s_room);
+	while (i > 1)
 	{
 		if (data->s_room->next_start[i]->len >
 				(data->s_room->next_start[i - 1]->len + data->num_ants))
 			data->s_room->next_start[i] = NULL;
 		i--;
 	}
+	data->path_number = replace_path_number(data->s_room);
 	ant_distribution(data, data->s_room);
 	return ;
 }
