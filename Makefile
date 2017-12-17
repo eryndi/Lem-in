@@ -6,7 +6,7 @@
 #    By: dwald <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 14:50:39 by dwald             #+#    #+#              #
-#    Updated: 2017/12/17 16:03:24 by dhadley          ###   ########.fr        #
+#    Updated: 2017/12/17 16:17:20 by dhadley          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC_FILES	=	main.c \
 				free_structures.c \
 				return_error.c \
 				tuto.c \
+				colors.c
 
 SRC_PATH	=	src
 
@@ -48,7 +49,7 @@ LIBFTA		=	libft.a
 
 CC			=	gcc
 
-FLAGS		=	-Wextra -Werror -Wall
+FLAGS		=	#-Wextra -Werror -Wall
 
 GREEN		=   \033[92m
 BLACK		=   \033[30m

@@ -6,25 +6,29 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:53:22 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/15 11:24:52 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/17 16:02:41 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void	mark_path(t_room *room, int path_number)
+void	mark_path(t_lemin *data, t_room *room, int path_number)
 {
 	unsigned	int	length;
 	t_room			*start_next;
 
 	length = 0;
+	ft_dprintf(1, PF_UNDERLINE"Path #%d : ", path_number + 1);
+	ft_dprintf(1, "%s ", data->s_room->name);
 	start_next = room;
 	while (room != NULL)
 	{
 		room->is_path = path_number;
+		ft_dprintf(1, "%s ", room->name);
 		room = room->next;
 		length++;
 	}
+	ft_dprintf(1, "\n"PF_EOC);
 	start_next->len = length;
 	return ;
 }
