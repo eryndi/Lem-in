@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/14 15:37:44 by dwald            ###   ########.fr       */
+/*   Updated: 2017/12/17 16:02:53 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,4 +103,5 @@ void				move_ants(t_lemin *data);
 void				free_structures(t_lemin *data);
 void				return_error(char *message);
 
+void				launch_tuto(void);
 #endif
