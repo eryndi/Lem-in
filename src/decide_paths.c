@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 19:28:25 by dhadley           #+#    #+#             */
-/*   Updated: 2017/12/17 16:40:13 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/17 16:45:33 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void			decide_paths(t_lemin *data)
 		i--;
 		data->s_room->next_start[i] = NULL;
 	}
-	i = replace_path_number(data->s_room);
+	i = replace_path_number(data->s_room) - 1;
 	while (i > 1)
 	{
 		if (data->s_room->next_start[i]->len >
