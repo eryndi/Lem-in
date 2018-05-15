@@ -6,7 +6,7 @@
 /*   By: dwald <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:41:40 by dwald             #+#    #+#             */
-/*   Updated: 2017/12/17 16:17:32 by dhadley          ###   ########.fr       */
+/*   Updated: 2017/12/17 17:19:35 by dwald            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,7 @@ void				decide_paths(t_lemin *data);
 void				assign_ants(t_lemin *data, t_room *start_room);
 void				move_ants(t_lemin *data);
 char				*color_that_ant(int id, char *s);
-
 void				free_structures(t_lemin *data);
 void				return_error(char *message);
 
-void				launch_tuto(void);
 #endif
