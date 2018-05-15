@@ -8,7 +8,11 @@ This was a group project done by dwald (eryndi) and [hadleycode](https://github.
 
 ## Usage
 ```
-./lem-in [-details] < [map_name]
+./lem-in < [map_name]
+```
+or run a script from the MAPS_TEST folder
+```
+./run_test.sh
 ```
 
 ## Input data
