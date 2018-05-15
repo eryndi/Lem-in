@@ -59,3 +59,5 @@ the_links
 ```
 
 ## lem-in
+
+![alt text](https://github.com/eryndi/Lem-in/blob/master/screenshot/Lem-inOUT.png "Lem-in output")
